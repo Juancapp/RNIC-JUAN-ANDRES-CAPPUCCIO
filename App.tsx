@@ -9,14 +9,12 @@ import React, { useEffect, useState } from "react";
 import type { PropsWithChildren } from "react";
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   useColorScheme,
   View,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -24,20 +22,20 @@ import Card from "./src/components/Card";
 import { data } from "./src/constants/data";
 import { TasksList } from "./src/components/TasksList";
 import Form from "./src/components/Form";
+import { styles } from "./styles";
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === "dark";
   const [tasksData, setTasksData] = useState(data);
 
   const handleFormData = (data: { title: string; description: string }) => {
-    const { title, description } = data;
     const newTask = {
+      ...data,
       id: tasksData.length,
-      title: title,
-      description: description,
       isDone: false,
     };
-    setTasksData([...tasksData, newTask]);
+    if (data.title !== "" && data.description !== "")
+      setTasksData([...tasksData, newTask]);
   };
 
   const switchState = (id: number) => {
@@ -53,23 +51,22 @@ function App(): JSX.Element {
     });
   };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          Keyboard.dismiss;
-        }}
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss;
+      }}
+    >
+      <KeyboardAvoidingView
+        style={styles.viewContainer}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <View>
+        <SafeAreaView style={styles.safeArea}>
           <TasksList switchState={switchState} data={tasksData} />
           <Form passData={handleFormData} />
-        </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 

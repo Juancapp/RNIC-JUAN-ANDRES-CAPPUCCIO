@@ -1,9 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    gap: 30,
+  viewContainer: {
+    padding: 20,
     backgroundColor: "#DBDFEA",
-    paddingBottom: 10,
+    flex: 1,
+  },
+
+  safeArea: {
+    flex: 1,
   },
 });
