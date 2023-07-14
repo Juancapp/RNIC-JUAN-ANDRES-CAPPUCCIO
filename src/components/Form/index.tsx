@@ -4,8 +4,9 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  useColorScheme,
 } from "react-native";
-import { styles } from "./styles";
+import { styles as stylesNotConverted } from "./styles";
 import { useRef, useState } from "react";
 
 export default function Form(props: {
@@ -14,6 +15,9 @@ export default function Form(props: {
   const { passData } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const isDarkMode = useColorScheme() === "dark";
+
+  const styles = stylesNotConverted(isDarkMode);
 
   const descriptionInputRef = useRef<TextInput>(null);
 
@@ -38,6 +42,7 @@ export default function Form(props: {
         onSubmitEditing={() => {
           descriptionInputRef.current?.focus();
         }}
+        style={styles.input}
       />
       <TextInput
         autoCapitalize="sentences"
@@ -48,6 +53,7 @@ export default function Form(props: {
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
         }}
+        style={styles.input}
       />
       <TouchableOpacity style={styles.button} onPress={onSubmit}>
         <Text style={{ color: "#FFFFFF", fontWeight: "bold" }}>

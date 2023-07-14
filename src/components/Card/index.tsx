@@ -1,10 +1,17 @@
-import { Text, TouchableWithoutFeedback, View } from "react-native";
-import { styles } from "./styles";
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  useColorScheme,
+} from "react-native";
+import { styles as stylesNotConverted } from "./styles";
 import { CardProps } from "../../types/types";
 
 export default function Card(props: CardProps) {
   const { switchState, data } = props;
   const { title, description, isDone, id } = data;
+  const isDarkMode = useColorScheme() === "dark";
+  const styles = stylesNotConverted(isDarkMode);
 
   return (
     <>

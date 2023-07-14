@@ -1,36 +1,41 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    marginBottom: 10,
-    justifyContent: "space-around",
-    borderRadius: 10,
-    padding: 15,
-    height: 180,
-  },
+export const styles = (isDarkMode: boolean = false) => {
+  const stylesToReturn = StyleSheet.create({
+    container: {
+      backgroundColor: isDarkMode ? "#32343e" : "white",
+      marginBottom: 10,
+      justifyContent: "space-around",
+      borderRadius: 10,
+      padding: 15,
+      height: 180,
+    },
 
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
+    title: {
+      fontSize: 20,
+      fontWeight: "bold",
+    },
 
-  description: {
-    fontSize: 18,
-  },
+    description: {
+      fontSize: 18,
+    },
 
-  red: {
-    color: "red",
-    fontWeight: "bold",
-  },
+    red: {
+      color: "red",
+      fontWeight: "bold",
+    },
 
-  green: {
-    color: "green",
-    fontWeight: "bold",
-  },
+    green: {
+      color: "green",
+      fontWeight: "bold",
+    },
 
-  isDoneContainer: {
-    flexDirection: "row",
-    gap: 3,
-  },
-});
+    isDoneContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 3,
+    },
+  });
+
+  return stylesToReturn;
+};

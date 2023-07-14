@@ -6,7 +6,6 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import type { PropsWithChildren } from "react";
 import {
   SafeAreaView,
   TouchableWithoutFeedback,
@@ -18,16 +17,23 @@ import {
   AppState,
 } from "react-native";
 
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import Card from "./src/components/Card";
 import { data } from "./src/constants/data";
 import { TasksList } from "./src/components/TasksList";
 import Form from "./src/components/Form";
-import { styles } from "./styles";
+import { styles as stylesNotConverted } from "./styles";
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === "dark";
   const [tasksData, setTasksData] = useState(data);
+  const styles = stylesNotConverted(isDarkMode);
+
+  useEffect(() => {
+    console.log("STYLES: ", styles);
+  }, [styles]);
+
+  useEffect(() => {
+    console.log("IS DARK MODE: ", isDarkMode);
+  }, [isDarkMode]);
 
   const appState = useRef(AppState.currentState);
 
