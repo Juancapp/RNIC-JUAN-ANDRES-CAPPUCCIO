@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
-export const styles = (isDarkMode: boolean = false) => {
+export const styles = (isIos: boolean = false) => {
   const stylesToReturn = StyleSheet.create({
     container: {
-      backgroundColor: isDarkMode ? "#32343e" : "white",
+      backgroundColor: isIos ? "#32343e" : "white",
       marginBottom: 10,
       justifyContent: "space-around",
       borderRadius: 10,

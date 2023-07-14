@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
-export const styles = (isDarkMode: boolean = false) => {
+export const styles = (isIos: boolean = false) => {
   const stylesToReturn = StyleSheet.create({
     container: {
       padding: 20,
-      backgroundColor: isDarkMode ? "#32343e" : "white",
+      backgroundColor: isIos ? "#32343e" : "white",
       borderRadius: 10,
       marginTop: 10,
       gap: 10,
@@ -24,7 +24,7 @@ export const styles = (isDarkMode: boolean = false) => {
       fontWeight: "bold",
     },
     input: {
-      backgroundColor: isDarkMode ? "#24222b" : "white",
+      backgroundColor: isIos ? "#24222b" : "white",
       borderRadius: 20,
       paddingLeft: 10,
     },

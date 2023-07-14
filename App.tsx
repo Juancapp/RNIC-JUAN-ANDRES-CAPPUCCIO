@@ -23,17 +23,10 @@ import Form from "./src/components/Form";
 import { styles as stylesNotConverted } from "./styles";
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === "dark";
+  // const isIos = useColorScheme() === "dark";
   const [tasksData, setTasksData] = useState(data);
-  const styles = stylesNotConverted(isDarkMode);
-
-  useEffect(() => {
-    console.log("STYLES: ", styles);
-  }, [styles]);
-
-  useEffect(() => {
-    console.log("IS DARK MODE: ", isDarkMode);
-  }, [isDarkMode]);
+  const isIos = Platform.OS === "ios";
+  const styles = stylesNotConverted(isIos);
 
   const appState = useRef(AppState.currentState);
 

@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
-export const styles = (isDarkMode: boolean = false) => {
+export const styles = (isIos: boolean = false) => {
   const stylesToReturn = StyleSheet.create({
     viewContainer: {
       padding: 20,
-      backgroundColor: isDarkMode ? "#24222b" : "#DBDFEA",
+      backgroundColor: isIos ? "#24222b" : "#DBDFEA",
       flex: 1,
     },
 

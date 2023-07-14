@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Keyboard,
   useColorScheme,
+  Platform,
 } from "react-native";
 import { styles as stylesNotConverted } from "./styles";
 import { useRef, useState } from "react";
@@ -15,9 +16,8 @@ export default function Form(props: {
   const { passData } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const isDarkMode = useColorScheme() === "dark";
-
-  const styles = stylesNotConverted(isDarkMode);
+  const isIos = Platform.OS === "ios";
+  const styles = stylesNotConverted(isIos);
 
   const descriptionInputRef = useRef<TextInput>(null);
 

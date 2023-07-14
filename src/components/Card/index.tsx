@@ -1,4 +1,5 @@
 import {
+  Platform,
   Text,
   TouchableWithoutFeedback,
   View,
@@ -10,8 +11,8 @@ import { CardProps } from "../../types/types";
 export default function Card(props: CardProps) {
   const { switchState, data } = props;
   const { title, description, isDone, id } = data;
-  const isDarkMode = useColorScheme() === "dark";
-  const styles = stylesNotConverted(isDarkMode);
+  const isIos = Platform.OS === "ios";
+  const styles = stylesNotConverted(isIos);
 
   return (
     <>
