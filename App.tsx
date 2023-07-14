@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { PropsWithChildren } from "react";
 import {
   SafeAreaView,
@@ -15,6 +15,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  AppState,
 } from "react-native";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -27,6 +28,24 @@ import { styles } from "./styles";
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === "dark";
   const [tasksData, setTasksData] = useState(data);
+
+  const appState = useRef(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        setTasksData([]);
+      }
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   const handleFormData = (data: { title: string; description: string }) => {
     const newTask = {

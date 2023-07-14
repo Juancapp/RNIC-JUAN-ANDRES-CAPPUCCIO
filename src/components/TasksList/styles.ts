@@ -6,4 +6,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#DBDFEA",
     paddingBottom: 10,
   },
+
+  empty: {
+    alignSelf: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });
