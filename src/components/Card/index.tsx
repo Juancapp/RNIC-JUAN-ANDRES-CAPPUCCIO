@@ -1,10 +1,4 @@
-import {
-  Platform,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-  useColorScheme,
-} from "react-native";
+import { Platform, Text, TouchableWithoutFeedback, View } from "react-native";
 import { styles as stylesNotConverted } from "./styles";
 import { CardProps } from "../../types/types";
 

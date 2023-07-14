@@ -3,8 +3,6 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Keyboard,
-  useColorScheme,
   Platform,
 } from "react-native";
 import { styles as stylesNotConverted } from "./styles";
