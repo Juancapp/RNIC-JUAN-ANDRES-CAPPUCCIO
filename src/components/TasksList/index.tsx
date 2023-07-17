@@ -4,12 +4,14 @@ import Card from "../Card";
 import { styles } from "./styles";
 
 export const TasksList = (props: TasksListProps) => {
-  const { data, switchState } = props;
+  const { data, switchState, isIos } = props;
 
   return (
     <FlatList
       data={data}
-      renderItem={({ item }) => <Card switchState={switchState} data={item} />}
+      renderItem={({ item }) => (
+        <Card isIos={isIos} switchState={switchState} data={item} />
+      )}
       style={styles.container}
       ListEmptyComponent={() => (
         <Text style={styles.empty}>The list is empty</Text>

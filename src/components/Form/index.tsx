@@ -4,17 +4,18 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  Keyboard,
 } from "react-native";
 import { styles as stylesNotConverted } from "./styles";
 import { useRef, useState } from "react";
 
 export default function Form(props: {
   passData: (data: { title: string; description: string }) => void;
+  isIos: boolean;
 }) {
-  const { passData } = props;
+  const { passData, isIos } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const isIos = Platform.OS === "ios";
   const styles = stylesNotConverted(isIos);
 
   const descriptionInputRef = useRef<TextInput>(null);
@@ -25,6 +26,7 @@ export default function Form(props: {
       description: description,
     };
     passData(dataToPass);
+    Keyboard.dismiss();
     setTitle("");
     setDescription("");
   };

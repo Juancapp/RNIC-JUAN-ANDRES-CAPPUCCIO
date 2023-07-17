@@ -3,9 +3,8 @@ import { styles as stylesNotConverted } from "./styles";
 import { CardProps } from "../../types/types";
 
 export default function Card(props: CardProps) {
-  const { switchState, data } = props;
+  const { switchState, data, isIos } = props;
   const { title, description, isDone, id } = data;
-  const isIos = Platform.OS === "ios";
   const styles = stylesNotConverted(isIos);
 
   return (

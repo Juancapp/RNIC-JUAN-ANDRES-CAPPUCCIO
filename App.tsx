@@ -9,8 +9,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   SafeAreaView,
   TouchableWithoutFeedback,
-  useColorScheme,
-  View,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -23,7 +21,6 @@ import Form from "./src/components/Form";
 import { styles as stylesNotConverted } from "./styles";
 
 function App(): JSX.Element {
-  // const isIos = useColorScheme() === "dark";
   const [tasksData, setTasksData] = useState(data);
   const isIos = Platform.OS === "ios";
   const styles = stylesNotConverted(isIos);
@@ -80,8 +77,8 @@ function App(): JSX.Element {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <SafeAreaView style={styles.safeArea}>
-          <TasksList switchState={switchState} data={tasksData} />
-          <Form passData={handleFormData} />
+          <TasksList isIos={isIos} switchState={switchState} data={tasksData} />
+          <Form isIos={isIos} passData={handleFormData} />
         </SafeAreaView>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>

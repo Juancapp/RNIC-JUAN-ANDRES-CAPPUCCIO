@@ -8,9 +8,11 @@ export interface Task {
 export interface CardProps {
   switchState?: (id: number) => void;
   data: Task;
+  isIos: boolean;
 }
 
 export interface TasksListProps {
   switchState?: (id: number) => void;
   data: Task[];
+  isIos: boolean;
 }
