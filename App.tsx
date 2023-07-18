@@ -13,6 +13,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   AppState,
+  StatusBar,
 } from "react-native";
 
 import { data } from "./src/constants/data";
@@ -76,6 +77,10 @@ function App(): JSX.Element {
         style={styles.viewContainer}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
+        <StatusBar
+          barStyle={isIos ? "light-content" : "dark-content"}
+          backgroundColor={isIos ? "black" : "white"}
+        />
         <SafeAreaView style={styles.safeArea}>
           <TasksList isIos={isIos} switchState={switchState} data={tasksData} />
           <Form isIos={isIos} passData={handleFormData} />
