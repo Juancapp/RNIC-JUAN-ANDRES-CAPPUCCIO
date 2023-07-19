@@ -5,12 +5,9 @@ import {
   Platform,
   SafeAreaView,
   StatusBar,
-  Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { styles as stylesNotConverted } from "./styles";
-import { CardProps } from "../../types/types";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
 import { useEffect, useRef, useState } from "react";
