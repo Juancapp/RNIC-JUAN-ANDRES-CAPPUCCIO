@@ -50,6 +50,7 @@ export default function Form(props: {
         ref={descriptionInputRef}
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
+          Keyboard.dismiss();
         }}
         style={styles.input}
       />
