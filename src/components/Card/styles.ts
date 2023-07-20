@@ -1,41 +1,39 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
-export const styles = (isIos: boolean = false) => {
-  const stylesToReturn = StyleSheet.create({
-    container: {
-      backgroundColor: isIos ? "#32343e" : "white",
-      marginBottom: 10,
-      justifyContent: "space-around",
-      borderRadius: 10,
-      padding: 15,
-      height: 180,
-    },
+const isIos = Platform.OS === "ios";
 
-    title: {
-      fontSize: 20,
-      fontWeight: "bold",
-    },
+export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: isIos ? "#32343e" : "white",
+    marginBottom: 10,
+    justifyContent: "space-around",
+    borderRadius: 10,
+    padding: 15,
+    height: 180,
+  },
 
-    description: {
-      fontSize: 18,
-    },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 
-    red: {
-      color: "red",
-      fontWeight: "bold",
-    },
+  description: {
+    fontSize: 18,
+  },
 
-    green: {
-      color: "green",
-      fontWeight: "bold",
-    },
+  red: {
+    color: "red",
+    fontWeight: "bold",
+  },
 
-    isDoneContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: 3,
-    },
-  });
+  green: {
+    color: "green",
+    fontWeight: "bold",
+  },
 
-  return stylesToReturn;
-};
+  isDoneContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+  },
+});

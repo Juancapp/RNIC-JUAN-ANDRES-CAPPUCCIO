@@ -3,20 +3,18 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Platform,
   Keyboard,
 } from "react-native";
-import { styles as stylesNotConverted } from "./styles";
+import { styles } from "./styles";
 import { useRef, useState } from "react";
 
 export default function Form(props: {
   passData: (data: { title: string; description: string }) => void;
   isIos: boolean;
 }) {
-  const { passData, isIos } = props;
+  const { passData } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const styles = stylesNotConverted(isIos);
 
   const descriptionInputRef = useRef<TextInput>(null);
 
@@ -56,9 +54,7 @@ export default function Form(props: {
         style={styles.input}
       />
       <TouchableOpacity style={styles.button} onPress={onSubmit}>
-        <Text style={{ color: "#FFFFFF", fontWeight: "bold" }}>
-          Agregar Task
-        </Text>
+        <Text style={styles.textButton}>Agregar Task</Text>
       </TouchableOpacity>
     </View>
   );

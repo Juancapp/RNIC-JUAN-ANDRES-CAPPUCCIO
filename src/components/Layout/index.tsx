@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
 } from "react-native";
-import { styles as stylesNotConverted } from "./styles";
+import { styles } from "./styles";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +16,6 @@ import { data } from "../../constants/data";
 export default function Layout() {
   const [tasksData, setTasksData] = useState(data);
   const isIos = Platform.OS === "ios";
-  const styles = stylesNotConverted(isIos);
   const appState = useRef(AppState.currentState);
 
   useEffect(() => {
