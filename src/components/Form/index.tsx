@@ -10,7 +10,6 @@ import { useRef, useState } from "react";
 
 export default function Form(props: {
   passData: (data: { title: string; description: string }) => void;
-  isIos: boolean;
 }) {
   const { passData } = props;
   const [title, setTitle] = useState("");

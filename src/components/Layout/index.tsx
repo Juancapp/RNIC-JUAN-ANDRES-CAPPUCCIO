@@ -5,6 +5,7 @@ import {
   Platform,
   SafeAreaView,
   StatusBar,
+  Text,
   TouchableWithoutFeedback,
 } from "react-native";
 import { styles } from "./styles";
@@ -16,17 +17,12 @@ import { data } from "../../constants/data";
 export default function Layout() {
   const [tasksData, setTasksData] = useState(data);
   const isIos = Platform.OS === "ios";
-  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
-      ) {
+      if (nextAppState === "background") {
         setTasksData([]);
       }
-      appState.current = nextAppState;
     });
 
     return () => {
@@ -72,8 +68,8 @@ export default function Layout() {
           backgroundColor={isIos ? "black" : "white"}
         />
         <SafeAreaView style={styles.safeArea}>
-          <TasksList isIos={isIos} switchState={switchState} data={tasksData} />
-          <Form isIos={isIos} passData={handleFormData} />
+          <TasksList switchState={switchState} data={tasksData} />
+          <Form passData={handleFormData} />
         </SafeAreaView>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
