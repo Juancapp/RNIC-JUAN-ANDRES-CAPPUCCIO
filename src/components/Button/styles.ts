@@ -4,14 +4,15 @@ import { colors } from "../../constants/theme";
 export const ButtonStyle = styled.TouchableOpacity`
   background-color: ${colors.primaryButton};
   border-radius: 20px;
-  height: 30px;
-  width: 100px;
+  gap: 3px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   align-self: center;
+  padding: 8px 20px;
 `;
 
 export const ButtonText = styled.Text`
-  color: #ffffff;
+  color: ${colors.white};
   font-weight: 600;
 `;

@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
+import { colors } from "../../constants/theme";
 
 export const Container = styled.TouchableOpacity`
-  background-color: white;
+  background-color: ${colors.white};
   margin-bottom: 12px;
   justify-content: space-around;
   border-radius: 10px;
