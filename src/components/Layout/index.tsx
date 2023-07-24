@@ -1,18 +1,15 @@
 import {
   AppState,
   Keyboard,
-  KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StatusBar,
-  Text,
   TouchableWithoutFeedback,
 } from "react-native";
-import { styles } from "./styles";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
 import { useEffect, useRef, useState } from "react";
 import { data } from "../../constants/data";
+import { SafeArea, ViewContainer } from "./styles";
 
 export default function Layout() {
   const [tasksData, setTasksData] = useState(data);
@@ -20,9 +17,7 @@ export default function Layout() {
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (nextAppState === "background") {
-        setTasksData([]);
-      }
+      nextAppState === "background" && setTasksData([]);
     });
 
     return () => {
@@ -59,19 +54,16 @@ export default function Layout() {
         Keyboard.dismiss;
       }}
     >
-      <KeyboardAvoidingView
-        style={styles.viewContainer}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+      <ViewContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <StatusBar
           barStyle={isIos ? "light-content" : "dark-content"}
           backgroundColor={isIos ? "black" : "white"}
         />
-        <SafeAreaView style={styles.safeArea}>
+        <SafeArea>
           <TasksList switchState={switchState} data={tasksData} />
           <Form passData={handleFormData} />
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+        </SafeArea>
+      </ViewContainer>
     </TouchableWithoutFeedback>
   );
 }

@@ -1,12 +1,7 @@
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
-} from "react-native";
-import { styles } from "./styles";
+import { TextInput, Keyboard } from "react-native";
 import { useRef, useState } from "react";
+import { Button } from "../Button";
+import { Container, Input, Title } from "./styles";
 
 export default function Form(props: {
   passData: (data: { title: string; description: string }) => void;
@@ -29,9 +24,9 @@ export default function Form(props: {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add new task</Text>
-      <TextInput
+    <Container>
+      <Title>Add new task</Title>
+      <Input
         autoCapitalize="sentences"
         placeholder="Título"
         value={title}
@@ -39,9 +34,8 @@ export default function Form(props: {
         onSubmitEditing={() => {
           descriptionInputRef.current?.focus();
         }}
-        style={styles.input}
       />
-      <TextInput
+      <Input
         autoCapitalize="sentences"
         placeholder="Descripción"
         value={description}
@@ -51,11 +45,8 @@ export default function Form(props: {
           descriptionInputRef.current?.blur();
           Keyboard.dismiss();
         }}
-        style={styles.input}
       />
-      <TouchableOpacity style={styles.button} onPress={onSubmit}>
-        <Text style={styles.textButton}>Agregar Task</Text>
-      </TouchableOpacity>
-    </View>
+      <Button onPress={onSubmit} text="agregar task" />
+    </Container>
   );
 }

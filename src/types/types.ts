@@ -14,3 +14,8 @@ export interface TasksListProps {
   switchState?: (id: number) => void;
   data: Task[];
 }
+
+export interface ButtonProps {
+  onPress?: () => void;
+  text?: string | number;
+}

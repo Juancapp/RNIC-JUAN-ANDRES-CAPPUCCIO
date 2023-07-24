@@ -1,5 +1,5 @@
-import { Text, TouchableWithoutFeedback, View } from "react-native";
-import { styles } from "./styles";
+import { Text, TouchableWithoutFeedback } from "react-native";
+import { Container, Description, IsDoneContainer, Title } from "./styles";
 import { CardProps } from "../../types/types";
 
 export default function Card(props: CardProps) {
@@ -8,16 +8,14 @@ export default function Card(props: CardProps) {
 
   return (
     <TouchableWithoutFeedback onPress={() => switchState && switchState(id)}>
-      <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
-        <View style={styles.isDoneContainer}>
+      <Container>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <IsDoneContainer>
           <Text>Realizada:</Text>
-          <Text style={isDone ? styles.green : styles.red}>
-            {isDone ? "Sí" : "No"}
-          </Text>
-        </View>
-      </View>
+          <Text>{isDone ? "Sí" : "No"}</Text>
+        </IsDoneContainer>
+      </Container>
     </TouchableWithoutFeedback>
   );
 }
