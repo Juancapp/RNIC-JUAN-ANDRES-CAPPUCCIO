@@ -4,8 +4,7 @@ import {
   Title,
   ButtonsAndTitleContainer,
   Image,
-  CustomFontBold,
-  CustomFontRegular,
+  CustomFont,
 } from "./styles";
 import { CardProps } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
@@ -25,9 +24,9 @@ export default function Card(props: CardProps) {
       hasImage={img}
     >
       <ButtonsAndTitleContainer>
-        <CustomFontBold>
+        <CustomFont bold={true}>
           <Title>{title}</Title>
-        </CustomFontBold>
+        </CustomFont>
         <TouchableOpacity
           activeOpacity={1}
           onPress={(e) => e.stopPropagation()}
@@ -36,9 +35,9 @@ export default function Card(props: CardProps) {
         </TouchableOpacity>
       </ButtonsAndTitleContainer>
       {img && <Image alt={title} source={img} />}
-      <CustomFontRegular>
+      <CustomFont>
         <Description>{description}</Description>
-      </CustomFontRegular>
+      </CustomFont>
       <ButtonsAndTitleContainer>
         <TouchableOpacity
           activeOpacity={1}
