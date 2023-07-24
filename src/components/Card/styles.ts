@@ -9,10 +9,17 @@ export const Container = styled.TouchableOpacity`
   height: ${(props: { hasImage: any }) => (props.hasImage ? "400px" : "180px")};
 `;
 
+export const CustomFontBold = styled.Text`
+  font-family: "Lato-Bold";
+`;
+
+export const CustomFontRegular = styled.Text`
+  font-family: "Lato-Regular";
+`;
+
 export const Title = styled.Text`
   font-size: 20px;
   font-weight: 700;
-  font-family: "Lato-Regular";
 `;
 
 export const Description = styled.Text`
