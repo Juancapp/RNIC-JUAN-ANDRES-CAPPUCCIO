@@ -21,5 +21,5 @@ export const Description = styled.Text`
 export const IsDoneContainer = styled.View`
   flex-direction: "row";
   align-items: "center";
-  gap: 3;
+  gap: 3px;
 `;

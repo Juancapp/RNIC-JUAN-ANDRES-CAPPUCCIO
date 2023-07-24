@@ -7,16 +7,8 @@ export const Container = styled.FlatList`
   padding-bottom: 10px;
 `;
 
-export const Empty = styled.View`
+export const Empty = styled.Text`
   align-self: center;
-  font-size: 20;
+  font-size: 20px;
   font-weight: bold;
 `;
-
-export const styles = StyleSheet.create({
-  empty: {
-    alignSelf: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
