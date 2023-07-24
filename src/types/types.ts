@@ -3,6 +3,7 @@ export interface Task {
   title: string;
   description: string;
   isDone: boolean;
+  img?: string;
 }
 
 export interface CardProps {

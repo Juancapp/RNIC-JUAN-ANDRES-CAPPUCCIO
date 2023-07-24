@@ -5,6 +5,7 @@ export const data = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: true,
+    img: require("../assets/images/dan-rogers-lMIvz5b1vRo-unsplash.jpg"),
   },
   {
     id: 1,
@@ -19,6 +20,7 @@ export const data = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: true,
+    img: require("../assets/images/kent-tupas-WaUcTYPfiCU-unsplash.jpg"),
   },
   {
     id: 3,
@@ -40,6 +42,7 @@ export const data = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: false,
+    img: require("../assets/images/wong-zihoo-DBtgQI-9XdM-unsplash.jpg"),
   },
   {
     id: 6,

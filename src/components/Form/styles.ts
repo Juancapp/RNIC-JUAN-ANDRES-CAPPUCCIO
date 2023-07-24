@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { colors } from "../../constants/theme";
 
 export const Container = styled.View`
   padding: 20px;
@@ -17,4 +18,5 @@ export const Input = styled.TextInput`
   background-color: white;
   border-radius: 20px;
   padding-left: 10px;
+  background-color: ${colors.background};
 `;
