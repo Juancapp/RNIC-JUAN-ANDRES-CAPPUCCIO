@@ -1,5 +1,5 @@
 import { colors } from "../../constants/theme";
-import { styled } from "styled-components/native";
+import styled from "styled-components/native";
 
 export const ViewContainer = styled.KeyboardAvoidingView`
   padding: 20px;

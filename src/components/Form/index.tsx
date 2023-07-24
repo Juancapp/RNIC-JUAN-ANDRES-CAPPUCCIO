@@ -25,12 +25,12 @@ export default function Form(props: {
 
   return (
     <Container>
-      <Title>Add new task</Title>
+      <Title>Agregar Task</Title>
       <Input
         autoCapitalize="sentences"
         placeholder="Título"
         value={title}
-        onChangeText={(value) => setTitle(value)}
+        onChangeText={setTitle}
         onSubmitEditing={() => {
           descriptionInputRef.current?.focus();
         }}
@@ -39,14 +39,14 @@ export default function Form(props: {
         autoCapitalize="sentences"
         placeholder="Descripción"
         value={description}
-        onChangeText={(value) => setDescription(value)}
+        onChangeText={setDescription}
         ref={descriptionInputRef}
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
           Keyboard.dismiss();
         }}
       />
-      <Button onPress={onSubmit} text="agregar task" />
+      <Button onPress={onSubmit} text="Confirmar" />
     </Container>
   );
 }

@@ -6,12 +6,12 @@ export const ButtonStyle = styled.TouchableOpacity`
   border-radius: 20px;
   height: 30px;
   width: 100px;
-  align-items: "center";
-  justify-content: "center";
-  align-self: "center";
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 `;
 
 export const ButtonText = styled.Text`
-  color: "#FFFFFF";
-  font-weight: "bold";
+  color: #ffffff;
+  font-weight: 600;
 `;
