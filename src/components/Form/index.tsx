@@ -43,7 +43,7 @@ export default function Form(props: {
         ref={descriptionInputRef}
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
-          Keyboard.dismiss();
+          onSubmit();
         }}
       />
       <Button onPress={onSubmit} text="Confirmar" />

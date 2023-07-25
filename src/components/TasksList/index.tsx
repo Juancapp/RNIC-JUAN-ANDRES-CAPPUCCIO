@@ -1,4 +1,3 @@
-import { FlatList, Text } from "react-native";
 import { TasksListProps, Task } from "../../types/types";
 import Card from "../Card";
 import { Empty, Container } from "./styles";

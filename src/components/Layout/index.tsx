@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "../../constants/data";
 import { SafeArea, ViewContainer } from "./styles";
 
