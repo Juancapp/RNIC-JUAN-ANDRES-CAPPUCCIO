@@ -1,16 +1,10 @@
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
-} from "react-native";
-import { styles } from "./styles";
+import { TextInput, Keyboard } from "react-native";
 import { useRef, useState } from "react";
+import { Button } from "../Button";
+import { Container, Input, Title } from "./styles";
 
 export default function Form(props: {
   passData: (data: { title: string; description: string }) => void;
-  isIos: boolean;
 }) {
   const { passData } = props;
   const [title, setTitle] = useState("");
@@ -30,33 +24,29 @@ export default function Form(props: {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add new task</Text>
-      <TextInput
+    <Container>
+      <Title>Agregar Task</Title>
+      <Input
         autoCapitalize="sentences"
         placeholder="Título"
         value={title}
-        onChangeText={(value) => setTitle(value)}
+        onChangeText={setTitle}
         onSubmitEditing={() => {
           descriptionInputRef.current?.focus();
         }}
-        style={styles.input}
       />
-      <TextInput
+      <Input
         autoCapitalize="sentences"
         placeholder="Descripción"
         value={description}
-        onChangeText={(value) => setDescription(value)}
+        onChangeText={setDescription}
         ref={descriptionInputRef}
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
-          Keyboard.dismiss();
+          onSubmit();
         }}
-        style={styles.input}
       />
-      <TouchableOpacity style={styles.button} onPress={onSubmit}>
-        <Text style={styles.textButton}>Agregar Task</Text>
-      </TouchableOpacity>
-    </View>
+      <Button onPress={onSubmit} text="Confirmar" />
+    </Container>
   );
 }

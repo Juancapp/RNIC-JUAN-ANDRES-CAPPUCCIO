@@ -1,15 +1,13 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { colors } from "../../constants/theme";
 
-export const styles = StyleSheet.create({
-  container: {
-    gap: 30,
-    backgroundColor: "transparent",
-    paddingBottom: 10,
-  },
+export const Container = styled.FlatList`
+  background-color: ${colors.transparent};
+  padding-bottom: 10px;
+`;
 
-  empty: {
-    alignSelf: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
+export const Empty = styled.Text`
+  align-self: center;
+  font-size: 20px;
+  font-weight: bold;
+`;

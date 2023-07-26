@@ -1,38 +1,22 @@
-import { Platform, StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { colors } from "../../constants/theme";
 
-const isIos = Platform.OS === "ios";
+export const Container = styled.View`
+  padding: 20px;
+  background-color: ${colors.white};
+  border-radius: 10px;
+  margin-top: 10px;
+  gap: 10px;
+`;
 
-export const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: isIos ? "#32343e" : "white",
-    borderRadius: 10,
-    marginTop: 10,
-    gap: 10,
-  },
+export const Title = styled.Text`
+  font-size: 20px;
+  font-weight: 600;
+`;
 
-  button: {
-    backgroundColor: "#7a7fd3",
-    borderRadius: 20,
-    height: 30,
-    width: 100,
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-
-  textButton: {
-    color: "#FFFFFF",
-    fontWeight: "bold",
-  },
-
-  title: {
-    fontSize: 32432432432,
-    fontWeight: "bold",
-  },
-  input: {
-    backgroundColor: isIos ? "#24222b" : "white",
-    borderRadius: 20,
-    paddingLeft: 10,
-  },
-});
+export const Input = styled.TextInput`
+  background-color: ${colors.white};
+  border-radius: 20px;
+  padding-left: 10px;
+  background-color: ${colors.background};
+`;

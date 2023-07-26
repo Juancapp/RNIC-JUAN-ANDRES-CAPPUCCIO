@@ -1,39 +1,39 @@
-import { Platform, StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { colors } from "../../constants/theme";
 
-const isIos = Platform.OS === "ios";
+export const Container = styled.TouchableOpacity`
+  background-color: ${colors.white};
+  margin-bottom: 12px;
+  justify-content: space-around;
+  border-radius: 10px;
+  padding: 15px;
+  height: ${(props: { hasImage: boolean }) =>
+    props.hasImage ? "400px" : "180px"};
+`;
 
-export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: isIos ? "#32343e" : "white",
-    marginBottom: 10,
-    justifyContent: "space-around",
-    borderRadius: 10,
-    padding: 15,
-    height: 180,
-  },
+export const CustomFont = styled.Text`
+  font-family: ${(bold: boolean) => (bold ? "Lato-Bold" : "Lato-Regular")};
+`;
 
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
+export const Title = styled.Text`
+  font-size: 20px;
+  font-weight: 700;
+`;
 
-  description: {
-    fontSize: 18,
-  },
+export const Description = styled.Text`
+  font-size: 18px;
+  font-family: "Lato-Regular";
+`;
 
-  red: {
-    color: "red",
-    fontWeight: "bold",
-  },
+export const ButtonsAndTitleContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-  green: {
-    color: "green",
-    fontWeight: "bold",
-  },
-
-  isDoneContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 3,
-  },
-});
+export const Image = styled.Image`
+  width: 100%;
+  height: 60%;
+  border-radius: 10px;
+`;

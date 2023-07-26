@@ -1,13 +1,12 @@
-import { Platform, StyleSheet } from "react-native";
+import { colors } from "../../constants/theme";
+import styled from "styled-components/native";
 
-export const styles = StyleSheet.create({
-  viewContainer: {
-    padding: 20,
-    backgroundColor: Platform.OS === "ios" ? "#24222b" : "#DBDFEA",
-    flex: 1,
-  },
+export const ViewContainer = styled.KeyboardAvoidingView`
+  padding: 20px;
+  background-color: ${colors.background};
+  flex: 1;
+`;
 
-  safeArea: {
-    flex: 1,
-  },
-});
+export const SafeArea = styled.SafeAreaView`
+  flex: 1;
+`;

@@ -1,32 +1,23 @@
 import {
   AppState,
   Keyboard,
-  KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StatusBar,
   TouchableWithoutFeedback,
 } from "react-native";
-import { styles } from "./styles";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "../../constants/data";
+import { SafeArea, ViewContainer } from "./styles";
 
 export default function Layout() {
   const [tasksData, setTasksData] = useState(data);
   const isIos = Platform.OS === "ios";
-  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
-      ) {
-        setTasksData([]);
-      }
-      appState.current = nextAppState;
+      nextAppState === "background" && setTasksData([]);
     });
 
     return () => {
@@ -63,19 +54,16 @@ export default function Layout() {
         Keyboard.dismiss;
       }}
     >
-      <KeyboardAvoidingView
-        style={styles.viewContainer}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+      <ViewContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <StatusBar
           barStyle={isIos ? "light-content" : "dark-content"}
           backgroundColor={isIos ? "black" : "white"}
         />
-        <SafeAreaView style={styles.safeArea}>
-          <TasksList isIos={isIos} switchState={switchState} data={tasksData} />
-          <Form isIos={isIos} passData={handleFormData} />
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+        <SafeArea>
+          <TasksList switchState={switchState} data={tasksData} />
+          <Form passData={handleFormData} />
+        </SafeArea>
+      </ViewContainer>
     </TouchableWithoutFeedback>
   );
 }
