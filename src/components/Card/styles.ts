@@ -7,7 +7,8 @@ export const Container = styled.TouchableOpacity`
   justify-content: space-around;
   border-radius: 10px;
   padding: 15px;
-  height: ${(props: { hasImage: any }) => (props.hasImage ? "400px" : "180px")};
+  height: ${(props: { hasImage: boolean }) =>
+    props.hasImage ? "400px" : "180px"};
 `;
 
 export const CustomFont = styled.Text`
