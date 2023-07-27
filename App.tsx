@@ -4,6 +4,7 @@ AppContext;
 
 import Layout from "./src/components/Layout";
 import { AppContext } from "./src/context/contextProvider";
+import { NavigationContainer } from "@react-navigation/native";
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -12,7 +13,9 @@ function App(): JSX.Element {
 
   return (
     <AppContext>
-      <Layout />
+      <NavigationContainer>
+        <Layout />
+      </NavigationContainer>
     </AppContext>
   );
 }

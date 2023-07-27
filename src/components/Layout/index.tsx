@@ -13,17 +13,7 @@ import { ContextProvider } from "../../context/contextProvider";
 
 export default function Layout() {
   const isIos = Platform.OS === "ios";
-  const { setTasksData, tasksData } = useContext(ContextProvider)!;
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      nextAppState === "background" && setTasksData([]);
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
+  const { tasksData } = useContext(ContextProvider)!;
 
   return (
     <TouchableWithoutFeedback

@@ -13,7 +13,7 @@ export interface CardProps {
 }
 export interface ButtonProps {
   onPress?: () => void;
-  text?: string | number;
+  text: string | number;
   toAdd?: boolean;
   disabled?: boolean;
 }
@@ -21,3 +21,9 @@ export interface ButtonProps {
 export interface TaskListProps {
   data: Task[];
 }
+
+export type RootStackParamList = {
+  List: { data: Task[] };
+  EditTask: undefined;
+  AddTask: undefined;
+};

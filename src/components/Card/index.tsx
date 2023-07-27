@@ -17,8 +17,10 @@ import { useContext } from "react";
 
 export default function Card(props: CardProps) {
   const { data } = props;
-  const { setTasksData } = useContext(ContextProvider)!;
+  const { setTasksData, setSelectedTask, setIsToEdit } =
+    useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
+  const dataWithoutImg = { title, description, isDone, id, limitDate };
 
   const switchState = (id: number) => {
     setTasksData((prevTasksData: Task[]) => {
@@ -54,7 +56,11 @@ export default function Card(props: CardProps) {
       <ButtonsAndTitleContainer>
         <TouchableOpacity
           activeOpacity={1}
-          onPress={(e) => e.stopPropagation()}
+          onPress={(e) => {
+            e.stopPropagation();
+            setSelectedTask(dataWithoutImg);
+            setIsToEdit(true);
+          }}
         >
           <Edit />
         </TouchableOpacity>

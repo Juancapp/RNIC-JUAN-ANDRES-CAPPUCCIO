@@ -9,12 +9,22 @@ export default function Form() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [limitDate, setLimitDate] = useState(new Date());
-  const { setTasksData, tasksData } = useContext(ContextProvider)!;
   const [open, setOpen] = useState(false);
+
+  const { setTasksData, tasksData, isToEdit, selectedTask } =
+    useContext(ContextProvider)!;
 
   const descriptionInputRef = useRef<TextInput>(null);
 
   const isDirty = title !== "" && description !== "";
+
+  useEffect(() => {
+    if (isToEdit && selectedTask) {
+      setTitle(selectedTask.title);
+      setDescription(selectedTask.description);
+      // setLimitDate(new Date(selectedTask.limitDate!));
+    }
+  }, [selectedTask]);
 
   const createTask = (data: {
     title: string;
@@ -44,7 +54,7 @@ export default function Form() {
 
   return (
     <Container>
-      <Title>Agregar Task</Title>
+      <Title>{isToEdit ? "Editar Task" : "Agregar Task"}</Title>
       <Input
         autoCapitalize="sentences"
         placeholder="Título"
