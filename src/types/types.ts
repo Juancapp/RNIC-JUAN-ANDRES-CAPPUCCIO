@@ -4,7 +4,7 @@ export interface Task {
   description: string;
   isDone: boolean;
   img?: string;
-  limitDate: string;
+  limitDate?: string;
 }
 
 export interface CardProps {

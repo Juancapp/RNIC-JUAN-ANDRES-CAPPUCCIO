@@ -5,15 +5,13 @@ export const Container = styled.TouchableOpacity`
   background-color: ${colors.white};
   margin-bottom: 12px;
   justify-content: space-around;
+  gap: 10px;
   border-radius: 10px;
   padding: 15px;
-  height: ${(props: { hasImage: boolean }) =>
-    props.hasImage ? "400px" : "180px"};
 `;
 
-export const CustomFont = styled.Text`
-  font-family: ${(props: { bold: boolean }) =>
-    props.bold ? "Lato-Bold" : "Lato-Regular"};
+export const CustomFont = styled.Text<{ bold?: boolean }>`
+  font-family: ${(props) => (props.bold ? "Lato-Bold" : "Lato-Regular")};
 `;
 
 export const Title = styled.Text`
@@ -33,8 +31,8 @@ export const ButtonsAndTitleContainer = styled.View`
   align-items: center;
 `;
 
-export const Image = styled.Image`
+export const Image = styled.Image<{ source: string }>`
   width: 100%;
-  height: 60%;
+  height: 200px;
   border-radius: 10px;
 `;

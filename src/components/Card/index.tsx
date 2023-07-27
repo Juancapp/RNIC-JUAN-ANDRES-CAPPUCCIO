@@ -34,11 +34,7 @@ export default function Card(props: CardProps) {
   };
 
   return (
-    <Container
-      activeOpacity={1}
-      onPress={() => switchState && switchState(id)}
-      hasImage={!!img}
-    >
+    <Container activeOpacity={1} onPress={() => switchState && switchState(id)}>
       <ButtonsAndTitleContainer>
         <CustomFont bold={true}>
           <Title>{title}</Title>
