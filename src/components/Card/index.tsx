@@ -6,16 +6,33 @@ import {
   Image,
   CustomFont,
 } from "./styles";
-import { CardProps } from "../../types/types";
+import { CardProps, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Delete from "../../assets/icons/Delete.svg";
 import Edit from "../../assets/icons/Edit.svg";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { ContextProvider } from "../../context/contextProvider";
+import { useContext } from "react";
 
 export default function Card(props: CardProps) {
-  const { switchState, data } = props;
-  const { title, description, isDone, id, img } = data;
+  const { data } = props;
+  const { setTasksData } = useContext(ContextProvider)!;
+  const { title, description, isDone, id, img, limitDate } = data;
+  const stringDate = limitDate.toDateString();
+
+  const switchState = (id: number) => {
+    setTasksData((prevTasksData: Task[]) => {
+      return prevTasksData
+        .map((task) => {
+          if (task.id === id) {
+            return { ...task, isDone: !task.isDone };
+          }
+          return task;
+        })
+        .sort((a, b) => a.id - b.id);
+    });
+  };
 
   return (
     <Container
@@ -37,6 +54,7 @@ export default function Card(props: CardProps) {
       {img && <Image alt={title} source={img} />}
       <CustomFont>
         <Description>{description}</Description>
+        <Text>Limit date {stringDate}</Text>
       </CustomFont>
       <ButtonsAndTitleContainer>
         <TouchableOpacity

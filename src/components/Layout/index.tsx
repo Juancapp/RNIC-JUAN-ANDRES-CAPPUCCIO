@@ -7,13 +7,13 @@ import {
 } from "react-native";
 import { TasksList } from "../TasksList";
 import Form from "../Form";
-import { useEffect, useState } from "react";
-import { data } from "../../constants/data";
+import { useContext, useEffect } from "react";
 import { SafeArea, ViewContainer } from "./styles";
+import { ContextProvider } from "../../context/contextProvider";
 
 export default function Layout() {
-  const [tasksData, setTasksData] = useState(data);
   const isIos = Platform.OS === "ios";
+  const { setTasksData, tasksData } = useContext(ContextProvider)!;
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
@@ -24,29 +24,6 @@ export default function Layout() {
       subscription.remove();
     };
   }, []);
-
-  const handleFormData = (data: { title: string; description: string }) => {
-    const newTask = {
-      ...data,
-      id: tasksData.length,
-      isDone: false,
-    };
-    if (data.title !== "" && data.description !== "")
-      setTasksData([...tasksData, newTask]);
-  };
-
-  const switchState = (id: number) => {
-    setTasksData((prevTasksData) => {
-      return prevTasksData
-        .map((task) => {
-          if (task.id === id) {
-            return { ...task, isDone: !task.isDone };
-          }
-          return task;
-        })
-        .sort((a, b) => a.id - b.id);
-    });
-  };
 
   return (
     <TouchableWithoutFeedback
@@ -60,8 +37,8 @@ export default function Layout() {
           backgroundColor={isIos ? "black" : "white"}
         />
         <SafeArea>
-          <TasksList switchState={switchState} data={tasksData} />
-          <Form passData={handleFormData} />
+          <TasksList data={tasksData} />
+          <Form />
         </SafeArea>
       </ViewContainer>
     </TouchableWithoutFeedback>

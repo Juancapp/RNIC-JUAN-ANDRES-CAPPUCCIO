@@ -4,19 +4,19 @@ export interface Task {
   description: string;
   isDone: boolean;
   img?: string;
+  limitDate: Date;
 }
 
 export interface CardProps {
   switchState?: (id: number) => void;
   data: Task;
 }
-
-export interface TasksListProps {
-  switchState?: (id: number) => void;
-  data: Task[];
-}
-
 export interface ButtonProps {
   onPress?: () => void;
   text?: string | number;
+  toAdd?: boolean;
+}
+
+export interface TaskListProps {
+  data: Task[];
 }
