@@ -12,7 +12,8 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const CustomFont = styled.Text`
-  font-family: ${(bold: boolean) => (bold ? "Lato-Bold" : "Lato-Regular")};
+  font-family: ${(props: { bold: boolean }) =>
+    props.bold ? "Lato-Bold" : "Lato-Regular"};
 `;
 
 export const Title = styled.Text`

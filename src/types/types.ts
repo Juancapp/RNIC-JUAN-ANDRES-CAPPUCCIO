@@ -4,7 +4,7 @@ export interface Task {
   description: string;
   isDone: boolean;
   img?: string;
-  limitDate: Date;
+  limitDate: string;
 }
 
 export interface CardProps {
@@ -15,6 +15,7 @@ export interface ButtonProps {
   onPress?: () => void;
   text?: string | number;
   toAdd?: boolean;
+  disabled?: boolean;
 }
 
 export interface TaskListProps {

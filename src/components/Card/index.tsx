@@ -19,7 +19,6 @@ export default function Card(props: CardProps) {
   const { data } = props;
   const { setTasksData } = useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
-  const stringDate = limitDate.toDateString();
 
   const switchState = (id: number) => {
     setTasksData((prevTasksData: Task[]) => {
@@ -54,8 +53,8 @@ export default function Card(props: CardProps) {
       {img && <Image alt={title} source={img} />}
       <CustomFont>
         <Description>{description}</Description>
-        <Text>Limit date {stringDate}</Text>
       </CustomFont>
+      {limitDate && <Text>Limit date: {limitDate}</Text>}
       <ButtonsAndTitleContainer>
         <TouchableOpacity
           activeOpacity={1}

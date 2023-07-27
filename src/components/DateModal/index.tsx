@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import DatePicker from "react-native-date-picker";
-import { Button } from "../Button";
+import { Button } from "./styles";
+import { Text } from "react-native";
+import Calendar from "../../assets/icons/Calendar.svg";
 
 export const DateModal = (props: {
   limitDate: Date;
@@ -12,7 +14,10 @@ export const DateModal = (props: {
 
   return (
     <>
-      <Button text="Date" onPress={() => setOpen(true)} />
+      <Button activeOpacity={1} text="Date" onPress={() => setOpen(true)}>
+        <Text>{limitDate.toDateString()}</Text>
+        <Calendar />
+      </Button>
       <DatePicker
         modal
         open={open}
@@ -24,6 +29,8 @@ export const DateModal = (props: {
         onCancel={() => {
           setOpen(false);
         }}
+        androidVariant="nativeAndroid"
+        mode="date"
       />
     </>
   );
