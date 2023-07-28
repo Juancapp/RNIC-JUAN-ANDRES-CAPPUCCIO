@@ -22,7 +22,9 @@ export default function Form() {
     if (isToEdit && selectedTask) {
       setTitle(selectedTask.title);
       setDescription(selectedTask.description);
-      // setLimitDate(new Date(selectedTask.limitDate!));
+      setLimitDate(
+        selectedTask.limitDate ? new Date(selectedTask.limitDate) : new Date()
+      );
     }
   }, [selectedTask]);
 
@@ -43,7 +45,7 @@ export default function Form() {
     const formData = {
       title: title,
       description: description,
-      limitDate: limitDate!.toDateString()!,
+      limitDate: limitDate.toDateString()!,
     };
     createTask(formData);
     Keyboard.dismiss();

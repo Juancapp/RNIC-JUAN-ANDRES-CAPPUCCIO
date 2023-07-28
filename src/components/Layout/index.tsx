@@ -1,19 +1,15 @@
 import {
-  AppState,
   Keyboard,
   Platform,
   StatusBar,
   TouchableWithoutFeedback,
 } from "react-native";
-import { TasksList } from "../TasksList";
-import Form from "../Form";
-import { useContext, useEffect } from "react";
+
 import { SafeArea, ViewContainer } from "./styles";
-import { ContextProvider } from "../../context/contextProvider";
+import { StackNavigator } from "../../navigation";
 
 export default function Layout() {
   const isIos = Platform.OS === "ios";
-  const { tasksData } = useContext(ContextProvider)!;
 
   return (
     <TouchableWithoutFeedback
@@ -27,8 +23,7 @@ export default function Layout() {
           backgroundColor={isIos ? "black" : "white"}
         />
         <SafeArea>
-          <TasksList data={tasksData} />
-          <Form />
+          <StackNavigator />
         </SafeArea>
       </ViewContainer>
     </TouchableWithoutFeedback>

@@ -18,12 +18,8 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-export interface TaskListProps {
-  data: Task[];
-}
-
 export type RootStackParamList = {
-  List: { data: Task[] };
+  List: undefined;
   EditTask: undefined;
   AddTask: undefined;
 };

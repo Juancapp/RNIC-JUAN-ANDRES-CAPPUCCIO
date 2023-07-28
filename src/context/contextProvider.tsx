@@ -55,10 +55,6 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
     isSetted && updateStorage(tasksData);
   }, [tasksData]);
 
-  useEffect(() => {
-    console.log("selectedTask: ", selectedTask);
-  }, [selectedTask]);
-
   const contextValue = {
     tasksData,
     setTasksData,
