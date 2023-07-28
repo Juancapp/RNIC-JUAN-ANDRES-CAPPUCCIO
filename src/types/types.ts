@@ -10,6 +10,7 @@ export interface Task {
 export interface CardProps {
   switchState?: (id: number) => void;
   data: Task;
+  onPress: () => void;
 }
 export interface ButtonProps {
   onPress?: () => void;

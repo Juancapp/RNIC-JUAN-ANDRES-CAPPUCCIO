@@ -1,4 +1,4 @@
-import { colors } from "../../constants/theme";
+import { colors } from "./src/constants/theme";
 import styled from "styled-components/native";
 
 export const ViewContainer = styled.KeyboardAvoidingView`

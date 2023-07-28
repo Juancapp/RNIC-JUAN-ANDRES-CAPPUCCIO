@@ -9,8 +9,8 @@ type ScreenOneProps = NativeStackScreenProps<RootStackParamList, "EditTask">;
 export const EditTask = ({ navigation }: ScreenOneProps) => {
   return (
     <>
-      <Form />
-      <Button text="Go back" onPress={navigation.navigate("AddTask")!} />
+      <Form isToEdit={true} />
+      <Button text="Go back" onPress={() => navigation.navigate("List")} />
     </>
   );
 };

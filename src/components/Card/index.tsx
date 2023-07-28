@@ -16,9 +16,8 @@ import { ContextProvider } from "../../context/contextProvider";
 import { useContext } from "react";
 
 export default function Card(props: CardProps) {
-  const { data } = props;
-  const { setTasksData, setSelectedTask, setIsToEdit } =
-    useContext(ContextProvider)!;
+  const { data, onPress } = props;
+  const { setTasksData, setSelectedTask } = useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
   const dataWithoutImg = { title, description, isDone, id, limitDate };
 
@@ -59,7 +58,7 @@ export default function Card(props: CardProps) {
           onPress={(e) => {
             e.stopPropagation();
             setSelectedTask(dataWithoutImg);
-            setIsToEdit(true);
+            onPress();
           }}
         >
           <Edit />

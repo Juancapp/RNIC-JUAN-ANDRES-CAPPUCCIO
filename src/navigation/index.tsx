@@ -14,16 +14,8 @@ export const StackNavigator = () => {
         initialRouteName="List"
         screenOptions={{ headerTitle: "Navigation" }}
       >
-        <Stack.Screen
-          name="List"
-          component={List}
-          options={{ headerTitle: "List" }}
-        />
-        <Stack.Screen
-          name="EditTask"
-          component={EditTask}
-          options={{ headerTitle: "Edit Task" }}
-        />
+        <Stack.Screen name="EditTask" component={EditTask} />
+        <Stack.Screen name="List" component={List} />
       </Stack.Navigator>
     </NavigationContainer>
   );

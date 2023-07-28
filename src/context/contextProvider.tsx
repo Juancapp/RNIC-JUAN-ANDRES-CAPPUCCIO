@@ -17,8 +17,6 @@ interface ContextValues {
   setTasksData: SetStateType<Task[]>;
   selectedTask: Task | null;
   setSelectedTask: SetStateType<Task | null>;
-  isToEdit: boolean;
-  setIsToEdit: SetStateType<boolean>;
 }
 
 export const ContextProvider = createContext<ContextValues | null>(null);
@@ -27,7 +25,6 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
   const [tasksData, setTasksData] = useState<Task[] | []>([]);
   const [isSetted, setIsSetted] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [isToEdit, setIsToEdit] = useState<boolean>(false);
 
   useEffect(() => {
     const getMyObject = async () => {
@@ -60,8 +57,6 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
     setTasksData,
     selectedTask,
     setSelectedTask,
-    isToEdit,
-    setIsToEdit,
   };
 
   return (
