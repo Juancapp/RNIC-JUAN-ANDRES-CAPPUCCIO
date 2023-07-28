@@ -25,25 +25,26 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
   const [tasksData, setTasksData] = useState<Task[] | []>([]);
   const [isSetted, setIsSetted] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const TASKS_DATA_KEY = "TASKS_DATA";
 
   useEffect(() => {
-    const getMyObject = async () => {
+    const getStorage = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem("tasksdata");
+        const jsonValue = await AsyncStorage.getItem(TASKS_DATA_KEY);
         setTasksData(jsonValue != null ? JSON.parse(jsonValue) : data);
       } catch (e) {
         console.log(e);
       }
       setIsSetted(true);
     };
-    getMyObject();
+    getStorage();
   }, []);
 
   useEffect(() => {
     const updateStorage = async (value: Task[]) => {
       try {
         const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem("tasksdata", jsonValue);
+        await AsyncStorage.setItem(TASKS_DATA_KEY, jsonValue);
       } catch (e) {
         console.log(e);
       }

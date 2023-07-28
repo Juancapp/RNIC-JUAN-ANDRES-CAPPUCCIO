@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RNBootSplash from "react-native-bootsplash";
 AppContext;
 import {
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { SafeArea, ViewContainer } from "./styles";
-import { StackNavigator } from "./src/navigation";
+import { TotalNavigator } from "./src/navigation";
 
 import { AppContext } from "./src/context/contextProvider";
 
@@ -33,7 +33,7 @@ function App(): JSX.Element {
             backgroundColor={isIos ? "black" : "white"}
           />
           <SafeArea>
-            <StackNavigator />
+            <TotalNavigator />
           </SafeArea>
         </ViewContainer>
       </TouchableWithoutFeedback>

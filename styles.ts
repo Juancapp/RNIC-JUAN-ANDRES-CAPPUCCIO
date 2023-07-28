@@ -2,7 +2,6 @@ import { colors } from "./src/constants/theme";
 import styled from "styled-components/native";
 
 export const ViewContainer = styled.KeyboardAvoidingView`
-  padding: 20px;
   background-color: ${colors.background};
   flex: 1;
 `;
