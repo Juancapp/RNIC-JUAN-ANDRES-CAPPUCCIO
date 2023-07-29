@@ -6,7 +6,7 @@ import {
   Image,
   CustomFont,
 } from "./styles";
-import { CardProps, Task } from "../../types/types";
+import { CardProps, SELECTED_TASK_DATA_KEY, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Delete from "../../assets/icons/Delete.svg";
@@ -14,10 +14,13 @@ import Edit from "../../assets/icons/Edit.svg";
 import { Text, TouchableOpacity } from "react-native";
 import { ContextProvider } from "../../context/contextProvider";
 import { useContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Images } from "../../constants/images";
 
 export default function Card(props: CardProps) {
   const { data, onPress } = props;
-  const { setTasksData, setSelectedTask } = useContext(ContextProvider)!;
+  const { setTasksData, setSelectedTask, tasksData } =
+    useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
   const dataWithoutImg = { title, description, isDone, id, limitDate };
 
@@ -34,6 +37,11 @@ export default function Card(props: CardProps) {
     });
   };
 
+  const setStorage = async (value: Task) => {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem(SELECTED_TASK_DATA_KEY, jsonValue);
+  };
+
   return (
     <Container activeOpacity={1} onPress={() => switchState && switchState(id)}>
       <ButtonsAndTitleContainer>
@@ -47,7 +55,7 @@ export default function Card(props: CardProps) {
           <Delete />
         </TouchableOpacity>
       </ButtonsAndTitleContainer>
-      {img && <Image alt={title} source={img} />}
+      {img && <Image alt={title} source={Images[img]} />}
       <CustomFont>
         <Description>{description}</Description>
       </CustomFont>
@@ -58,6 +66,7 @@ export default function Card(props: CardProps) {
           onPress={(e) => {
             e.stopPropagation();
             setSelectedTask(dataWithoutImg);
+            setStorage(dataWithoutImg);
             onPress();
           }}
         >

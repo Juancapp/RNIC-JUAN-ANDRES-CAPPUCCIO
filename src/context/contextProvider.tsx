@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import { data } from "../constants/data";
-import { Task } from "../types/types";
+import { SELECTED_TASK_DATA_KEY, Task } from "../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type SetStateType<T> = Dispatch<SetStateAction<T>>;
@@ -27,29 +27,41 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const TASKS_DATA_KEY = "TASKS_DATA";
 
+  const getStorage = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(TASKS_DATA_KEY);
+      const convertedData = jsonValue != null ? JSON.parse(jsonValue) : data;
+      setTasksData(convertedData);
+    } catch (e) {
+      console.log(e);
+    }
+    setIsSetted(true);
+  };
+
+  const getSelectedDataStorage = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(SELECTED_TASK_DATA_KEY);
+      setSelectedTask(jsonValue != null ? JSON.parse(jsonValue) : null);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateStorage = async (value: Task[]) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(TASKS_DATA_KEY, jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    const getStorage = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem(TASKS_DATA_KEY);
-        setTasksData(jsonValue != null ? JSON.parse(jsonValue) : data);
-      } catch (e) {
-        console.log(e);
-      }
-      setIsSetted(true);
-    };
     getStorage();
+    getSelectedDataStorage();
   }, []);
 
   useEffect(() => {
-    const updateStorage = async (value: Task[]) => {
-      try {
-        const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem(TASKS_DATA_KEY, jsonValue);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     isSetted && updateStorage(tasksData);
   }, [tasksData]);
 

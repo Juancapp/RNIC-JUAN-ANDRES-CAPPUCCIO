@@ -1,4 +1,4 @@
-import { TextInput, Keyboard } from "react-native";
+import { TextInput, Keyboard, Image } from "react-native";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "../Button";
 import { Container, Input, Title } from "./styles";
@@ -60,7 +60,7 @@ export default function Form(props: { isToEdit: boolean }) {
     setTasksData(updatedTask);
   };
 
-  const deleteData = (id: number) => {
+  const deleteData = () => {
     const filteredData = tasksData.filter(
       (task) => task.id !== selectedTask?.id
     );
@@ -79,6 +79,7 @@ export default function Form(props: { isToEdit: boolean }) {
     setTitle("");
     setDescription("");
     setLimitDate(new Date());
+    navigation.goBack();
   };
 
   return (
@@ -120,7 +121,7 @@ export default function Form(props: { isToEdit: boolean }) {
         <Button
           disabled={!isDirty}
           toAdd={true}
-          onPress={() => deleteData(selectedTask?.id!)}
+          onPress={() => deleteData()}
           text="Delete"
         />
       )}

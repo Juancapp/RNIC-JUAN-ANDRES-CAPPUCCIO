@@ -24,3 +24,5 @@ export type RootStackParamList = {
   EditTask: undefined;
   AddTask: undefined;
 };
+
+export const SELECTED_TASK_DATA_KEY = "SELECTED_TASK_DATA";
