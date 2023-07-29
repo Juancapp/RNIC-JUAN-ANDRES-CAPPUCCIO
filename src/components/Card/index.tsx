@@ -48,12 +48,6 @@ export default function Card(props: CardProps) {
         <CustomFont bold={true}>
           <Title>{title}</Title>
         </CustomFont>
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={(e) => e.stopPropagation()}
-        >
-          <Delete />
-        </TouchableOpacity>
       </ButtonsAndTitleContainer>
       {img && <Image alt={title} source={Images[img]} />}
       <CustomFont>

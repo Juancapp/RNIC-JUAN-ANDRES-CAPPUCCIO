@@ -4,7 +4,13 @@ import { ButtonText, ButtonStyle } from "./styles";
 import Add from "../../assets/icons/Add.svg";
 
 export const Button = (props: ButtonProps) => {
-  const { onPress, text, toAdd = false, disabled = false } = props;
+  const {
+    onPress,
+    text,
+    toAdd = false,
+    disabled = false,
+    variant = "primary",
+  } = props;
 
   return (
     <ButtonStyle
@@ -14,6 +20,7 @@ export const Button = (props: ButtonProps) => {
         } else null;
       }}
       disabled={!!disabled}
+      variant={variant}
     >
       <ButtonText>{text}</ButtonText>
       {toAdd && <Add />}

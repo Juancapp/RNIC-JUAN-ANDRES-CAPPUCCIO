@@ -16,6 +16,7 @@ export interface ButtonProps {
   onPress?: () => void;
   text: string | number;
   toAdd?: boolean;
+  variant?: "primary" | "delete";
   disabled?: boolean;
 }
 

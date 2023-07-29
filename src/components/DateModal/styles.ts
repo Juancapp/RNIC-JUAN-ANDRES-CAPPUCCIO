@@ -11,5 +11,5 @@ export const Button = styled.TouchableOpacity<{ text: string }>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${colors.background};
+  background-color: ${colors.white};
 `;

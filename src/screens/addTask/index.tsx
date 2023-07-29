@@ -1,13 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
 import { Button } from "../../components/Button";
+import Form from "../../components/Form";
 
-export const AddTask = (props: any) => {
-  const { navigation } = props;
-
+export const AddTask = () => {
   return (
-    <View>
-      <Text>AddTask</Text>
-    </View>
+    <>
+      <Form isToEdit={false} />
+    </>
   );
 };

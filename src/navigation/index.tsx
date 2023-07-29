@@ -28,7 +28,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabScreenOne = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerTitle: "Navigation" }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="List" component={List} />
       <Stack.Screen name="EditTask" component={EditTask} />
     </Stack.Navigator>
@@ -82,18 +82,11 @@ export const TotalNavigator = () => {
               );
             }
           },
+          headerShown: false,
         })}
       >
-        <Tab.Screen
-          name={Routes.SCREEN_ONE}
-          component={TabScreenOne}
-          options={{ title: "Screen One" }}
-        />
-        <Tab.Screen
-          name={Routes.SCREEN_TWO}
-          component={AddTask}
-          options={{ title: "Screen Two" }}
-        />
+        <Tab.Screen name={Routes.SCREEN_ONE} component={TabScreenOne} />
+        <Tab.Screen name={Routes.SCREEN_TWO} component={AddTask} />
       </Tab.Navigator>
     </NavigationContainer>
   );

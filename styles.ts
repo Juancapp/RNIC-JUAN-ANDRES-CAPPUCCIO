@@ -1,11 +1,9 @@
-import { colors } from "./src/constants/theme";
 import styled from "styled-components/native";
 
-export const ViewContainer = styled.KeyboardAvoidingView`
-  background-color: ${colors.background};
+export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
 `;
 
-export const SafeArea = styled.SafeAreaView`
+export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
 `;

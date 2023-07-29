@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-import { SafeArea, ViewContainer } from "./styles";
+import { KeyboardAvoidingView, SafeAreaView } from "./styles";
 import { TotalNavigator } from "./src/navigation";
 
 import { AppContext } from "./src/context/contextProvider";
@@ -27,15 +27,15 @@ function App(): JSX.Element {
           Keyboard.dismiss;
         }}
       >
-        <ViewContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        <KeyboardAvoidingView>
           <StatusBar
             barStyle={isIos ? "light-content" : "dark-content"}
             backgroundColor={isIos ? "black" : "white"}
           />
-          <SafeArea>
+          <SafeAreaView>
             <TotalNavigator />
-          </SafeArea>
-        </ViewContainer>
+          </SafeAreaView>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </AppContext>
   );

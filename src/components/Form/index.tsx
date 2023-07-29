@@ -1,14 +1,10 @@
 import { TextInput, Keyboard, Image } from "react-native";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "../Button";
-import { Container, Input, Title } from "./styles";
+import { ButtonsContainer, Container, Input, Title } from "./styles";
 import { ContextProvider } from "../../context/contextProvider";
 import { DateModal } from "../DateModal";
-import {
-  useFocusEffect,
-  useIsFocused,
-  useNavigation,
-} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Form(props: { isToEdit: boolean }) {
   const { isToEdit } = props;
@@ -111,20 +107,17 @@ export default function Form(props: { isToEdit: boolean }) {
         open={open}
         setOpen={setOpen}
       />
-      <Button
-        disabled={!isDirty}
-        toAdd={true}
-        onPress={onSubmit}
-        text="Confirmar"
-      />
-      {isToEdit && (
+      <ButtonsContainer>
+        {isToEdit && (
+          <Button onPress={() => deleteData()} text="Delete" variant="delete" />
+        )}
         <Button
           disabled={!isDirty}
           toAdd={true}
-          onPress={() => deleteData()}
-          text="Delete"
+          onPress={onSubmit}
+          text="Confirmar"
         />
-      )}
+      </ButtonsContainer>
     </Container>
   );
 }
