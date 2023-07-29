@@ -38,8 +38,9 @@ export default function Form(props: { isToEdit: boolean }) {
   }) => {
     const newTask = {
       ...data,
-      id: tasksData.length,
+      id: tasksData.length + 1,
       isDone: false,
+      isActive: true,
     };
     setTasksData([...tasksData, newTask]);
   };
@@ -57,10 +58,12 @@ export default function Form(props: { isToEdit: boolean }) {
   };
 
   const deleteData = () => {
-    const filteredData = tasksData.filter(
-      (task) => task.id !== selectedTask?.id
-    );
-    setTasksData(filteredData);
+    const changedData = tasksData.map((task) => {
+      if (task.id === selectedTask?.id)
+        return { ...selectedTask, isActive: false };
+      else return task;
+    });
+    setTasksData(changedData);
     navigation.goBack();
   };
 

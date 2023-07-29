@@ -5,6 +5,7 @@ export interface Task {
   isDone: boolean;
   img?: string;
   limitDate?: string;
+  isActive: boolean;
 }
 
 export interface CardProps {

@@ -7,6 +7,7 @@ export const data = [
     isDone: true,
     img: "danRogers",
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 1,
@@ -15,6 +16,7 @@ export const data = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: true,
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ export const data = [
     isDone: true,
     img: "kentTupas",
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 3,
@@ -32,6 +35,7 @@ export const data = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: false,
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 4,
@@ -40,6 +44,7 @@ export const data = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: true,
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 5,
@@ -49,6 +54,7 @@ export const data = [
     isDone: false,
     img: "wongZihoo",
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
   {
     id: 6,
@@ -57,5 +63,6 @@ export const data = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dolor justo, lobortis",
     isDone: true,
     limitDate: "Thu Jul 27 2023",
+    isActive: true,
   },
 ];

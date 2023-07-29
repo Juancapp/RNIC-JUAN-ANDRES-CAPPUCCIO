@@ -16,7 +16,7 @@ export const List = ({ navigation }: ScreenOneProps) => {
 
   return (
     <Container
-      data={tasksData}
+      data={tasksData.filter((task: Task) => task.isActive)}
       renderItem={({ item }) => <Card data={item as Task} onPress={onPress} />}
       ListEmptyComponent={() => <Empty>The list is empty</Empty>}
     />
