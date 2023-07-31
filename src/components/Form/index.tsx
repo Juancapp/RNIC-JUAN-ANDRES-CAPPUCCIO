@@ -8,13 +8,15 @@ import { useNavigation } from "@react-navigation/native";
 import { objectsEqual } from "../../helpers";
 import { FormTask } from "../../types/types";
 import { Spinner } from "../Spinner";
+import { Modal } from "../Modal";
 
 export default function Form(props: { isToEdit: boolean }) {
   const { isToEdit } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [limitDate, setLimitDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  const [dateModalDisplay, setDateModalDisplay] = useState(false);
+  const [modalDisplay, setModalDisplay] = useState<boolean>(false);
   const navigation = useNavigation();
   const currentData: FormTask = {
     title: title,
@@ -46,6 +48,10 @@ export default function Form(props: { isToEdit: boolean }) {
       );
     }
   }, [selectedTask]);
+
+  useEffect(() => {
+    dateModalDisplay && setModalDisplay(false);
+  }, [dateModalDisplay]);
 
   const createTask = (data: {
     title: string;
@@ -97,49 +103,64 @@ export default function Form(props: { isToEdit: boolean }) {
     navigation.goBack();
   };
 
-  return isToEdit && !selectedTask ? (
-    <Spinner />
-  ) : (
-    <Container>
-      <Title>{isToEdit ? "Editar Task" : "Agregar Task"}</Title>
-      <Input
-        autoCapitalize="sentences"
-        placeholder="Título"
-        value={title}
-        onChangeText={setTitle}
-        onSubmitEditing={() => {
-          descriptionInputRef.current?.focus();
-        }}
-        blurOnSubmit={false}
-      />
-      <Input
-        autoCapitalize="sentences"
-        placeholder="Descripción"
-        value={description}
-        onChangeText={setDescription}
-        ref={descriptionInputRef}
-        onSubmitEditing={() => {
-          descriptionInputRef.current?.blur();
-          setOpen(true);
-        }}
-      />
-      <DateModal
-        limitDate={limitDate}
-        setLimitDate={setLimitDate}
-        open={open}
-        setOpen={setOpen}
-      />
-      <ButtonsContainer>
-        {isToEdit && (
-          <Button onPress={deleteData} text="Eliminar" variant="delete" />
-        )}
-        <Button
-          disabled={isDirty}
-          toAdd={!isToEdit}
-          onPress={onSubmit}
-          text={isToEdit ? "Editar" : "Agregar"}
+  return (
+    <>
+      {isToEdit && !selectedTask ? (
+        <Spinner />
+      ) : (
+        <Container>
+          <Title>{isToEdit ? "Editar Tarea" : "Agregar Tarea"}</Title>
+          <Input
+            autoCapitalize="sentences"
+            placeholder="Título"
+            value={title}
+            onChangeText={setTitle}
+            onSubmitEditing={() => {
+              descriptionInputRef.current?.focus();
+            }}
+            blurOnSubmit={false}
+          />
+          <Input
+            autoCapitalize="sentences"
+            placeholder="Descripción"
+            value={description}
+            onChangeText={setDescription}
+            ref={descriptionInputRef}
+            onSubmitEditing={() => {
+              descriptionInputRef.current?.blur();
+              setDateModalDisplay(true);
+            }}
+          />
+          <DateModal
+            limitDate={limitDate}
+            setLimitDate={setLimitDate}
+            open={dateModalDisplay}
+            setOpen={setDateModalDisplay}
+          />
+          <ButtonsContainer>
+            {isToEdit && (
+              <Button
+                onPress={() => setModalDisplay(true)}
+                text="Eliminar"
+                variant="delete"
+              />
+            )}
+            <Button
+              disabled={isDirty}
+              toAdd={!isToEdit}
+              onPress={onSubmit}
+              text={isToEdit ? "Editar" : "Agregar"}
+            />
+          </ButtonsContainer>
+        </Container>
+      )}
+      {modalDisplay && (
+        <Modal
+          text="¿Desea eliminar la tarea?"
+          onCancel={() => setModalDisplay(false)}
+          onConfirm={deleteData}
         />
-      </ButtonsContainer>
-    </Container>
+      )}
+    </>
   );
 }
