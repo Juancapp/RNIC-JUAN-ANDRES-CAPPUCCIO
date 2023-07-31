@@ -1,10 +1,12 @@
 import { TextInput, Keyboard, Image } from "react-native";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "../Button";
 import { ButtonsContainer, Container, Input, Title } from "./styles";
 import { ContextProvider } from "../../context/contextProvider";
 import { DateModal } from "../DateModal";
 import { useNavigation } from "@react-navigation/native";
+import { objectsEqual } from "../../helpers";
+import { FormTask } from "../../types/types";
 
 export default function Form(props: { isToEdit: boolean }) {
   const { isToEdit } = props;
@@ -13,13 +15,26 @@ export default function Form(props: { isToEdit: boolean }) {
   const [limitDate, setLimitDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const navigation = useNavigation();
+  const currentData: FormTask = {
+    title: title,
+    description: description,
+    limitDate: limitDate.toDateString(),
+  };
 
   const { setTasksData, tasksData, selectedTask } =
     useContext(ContextProvider)!;
 
   const descriptionInputRef = useRef<TextInput>(null);
 
-  const isDirty = title !== "" && description !== "";
+  const isDirty = !isToEdit
+    ? !title || !description
+    : objectsEqual(currentData, {
+        title: selectedTask?.title!,
+        description: selectedTask?.description!,
+        limitDate: selectedTask?.limitDate,
+      }) ||
+      !title ||
+      !description;
 
   useEffect(() => {
     if (isToEdit && selectedTask) {
@@ -92,6 +107,7 @@ export default function Form(props: { isToEdit: boolean }) {
         onSubmitEditing={() => {
           descriptionInputRef.current?.focus();
         }}
+        blurOnSubmit={false}
       />
       <Input
         autoCapitalize="sentences"
@@ -109,21 +125,16 @@ export default function Form(props: { isToEdit: boolean }) {
         setLimitDate={setLimitDate}
         open={open}
         setOpen={setOpen}
-        onSubmit={onSubmit}
       />
       <ButtonsContainer>
         {isToEdit && (
-          <Button
-            onPress={() => deleteData()}
-            text="Eliminar"
-            variant="delete"
-          />
+          <Button onPress={deleteData} text="Eliminar" variant="delete" />
         )}
         <Button
-          disabled={!isDirty}
-          toAdd={false}
+          disabled={isDirty}
+          toAdd={!isToEdit}
           onPress={onSubmit}
-          text="Editar"
+          text={isToEdit ? "Editar" : "Agregar"}
         />
       </ButtonsContainer>
     </Container>

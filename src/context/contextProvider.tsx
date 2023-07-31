@@ -1,12 +1,20 @@
-import React, { useState, ReactNode, createContext, useEffect } from "react";
+import React, {
+  useState,
+  ReactNode,
+  createContext,
+  useEffect,
+  useCallback,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import { data } from "../constants/data";
-import { ContextValues, Keys, SetStateType, Task } from "../types/types";
+import { ContextValues, Keys, Task } from "../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const ContextProvider = createContext<ContextValues | null>(null);
 
 export const AppContext = ({ children }: { children: ReactNode }) => {
-  const [tasksData, setTasksData] = useState<Task[] | []>([]);
+  const [tasksData, setTasksData] = useState<Task[]>([]);
   const [isSetted, setIsSetted] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
@@ -22,15 +30,17 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
   const updateStorage = async (value: Task[]) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem(Keys.TASKS_DATA_KEY, jsonValue);
+      await AsyncStorage.setItem(storageConstants[0].key, jsonValue);
     } catch (e) {
-      console.log(e);
+      console.error("Error:", e);
     }
   };
 
   const getStorage = async (
     key: Keys,
-    setState: SetStateType<Task[] | []> | SetStateType<Task | null>,
+    setState:
+      | Dispatch<SetStateAction<Task[]>>
+      | Dispatch<SetStateAction<Task | null>>,
     elseData: Task | Task[] | null
   ) => {
     try {
@@ -39,7 +49,7 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
         jsonValue != null ? JSON.parse(jsonValue) : elseData;
       setState(convertedData);
     } catch (e) {
-      console.log(e);
+      console.log("Error", e);
     }
     key === Keys.TASKS_DATA_KEY && setIsSetted(true);
   };
@@ -52,7 +62,7 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     isSetted && updateStorage(tasksData);
-  }, [tasksData]);
+  }, [tasksData, isSetted]);
 
   const contextValue = {
     tasksData,

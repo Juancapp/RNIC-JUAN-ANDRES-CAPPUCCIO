@@ -9,9 +9,8 @@ export const DateModal = (props: {
   setLimitDate: Dispatch<SetStateAction<Date>>;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  onSubmit: () => void;
 }) => {
-  const { limitDate, setLimitDate, open, setOpen, onSubmit } = props;
+  const { limitDate, setLimitDate, open, setOpen } = props;
 
   return (
     <>
@@ -26,7 +25,6 @@ export const DateModal = (props: {
         onConfirm={(date) => {
           setOpen(false);
           setLimitDate(date);
-          onSubmit();
         }}
         onCancel={() => {
           setOpen(false);

@@ -11,6 +11,7 @@ import ListIcon from "../assets/icons/List.svg";
 import { colors } from "../constants/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
+import { Routes, TabParamList } from "./types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -27,11 +28,10 @@ const TabScreenOne = () => {
 export const TotalNavigator = () => {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
-  const NAVIGATION_KEY = Keys.NAVIGATION_KEY;
 
   useEffect(() => {
     const getStorageNavigationState = async () => {
-      const jsonValue = await AsyncStorage.getItem(NAVIGATION_KEY);
+      const jsonValue = await AsyncStorage.getItem(Keys.NAVIGATION_KEY);
       const initialState = jsonValue ? JSON.parse(jsonValue) : undefined;
       if (initialState !== undefined) {
         setInitialState(initialState);
@@ -52,7 +52,7 @@ export const TotalNavigator = () => {
     <NavigationContainer
       initialState={initialState}
       onStateChange={(state) => {
-        AsyncStorage.setItem(NAVIGATION_KEY, JSON.stringify(state));
+        AsyncStorage.setItem(Keys.NAVIGATION_KEY, JSON.stringify(state));
       }}
     >
       <Tab.Navigator

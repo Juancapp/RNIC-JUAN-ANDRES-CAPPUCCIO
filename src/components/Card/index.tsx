@@ -6,10 +6,9 @@ import {
   Image,
   CustomFont,
 } from "./styles";
-import { CardProps, Keys, Task } from "../../types/types";
+import { Keys, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
-import Delete from "../../assets/icons/Delete.svg";
 import Edit from "../../assets/icons/Edit.svg";
 import { Text, TouchableOpacity } from "react-native";
 import { ContextProvider } from "../../context/contextProvider";
@@ -17,10 +16,13 @@ import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Images } from "../../constants/images";
 
-export default function Card(props: CardProps) {
+export default function Card(props: {
+  switchState?: (id: number) => void;
+  data: Task;
+  onPress: () => void;
+}) {
   const { data, onPress } = props;
-  const { setTasksData, setSelectedTask, tasksData } =
-    useContext(ContextProvider)!;
+  const { setTasksData, setSelectedTask } = useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
   const dataWithoutImg = { title, description, isDone, id, limitDate };
 
@@ -43,7 +45,7 @@ export default function Card(props: CardProps) {
   };
 
   return (
-    <Container activeOpacity={1} onPress={() => switchState && switchState(id)}>
+    <Container activeOpacity={1} onPress={() => switchState?.(id)}>
       <ButtonsAndTitleContainer>
         <CustomFont bold={true}>
           <Title>{title}</Title>

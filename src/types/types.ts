@@ -10,17 +10,10 @@ export interface Task {
   isActive: boolean;
 }
 
-export interface CardProps {
-  switchState?: (id: number) => void;
-  data: Task;
-  onPress: () => void;
-}
-export interface ButtonProps {
-  onPress?: () => void;
-  text: string | number;
-  toAdd?: boolean;
-  variant?: "primary" | "delete";
-  disabled?: boolean;
+export interface FormTask {
+  title: string;
+  description: string;
+  limitDate?: string;
 }
 
 export type RootStackParamList = {
@@ -28,15 +21,13 @@ export type RootStackParamList = {
   EditTask: undefined;
   AddTask: undefined;
 };
-
-export type SetStateType<T> = Dispatch<SetStateAction<T>>;
-
 export interface ContextValues {
-  tasksData: Task[] | [];
-  setTasksData: SetStateType<Task[] | []>;
+  tasksData: Task[];
+  setTasksData: Dispatch<SetStateAction<Task[]>>;
   selectedTask: Task | null;
-  setSelectedTask: SetStateType<Task | null>;
+  setSelectedTask: Dispatch<SetStateAction<Task | null>>;
 }
+
 export enum Keys {
   SELECTED_TASK_DATA_KEY = "SELECTED_TASK_DATA",
   TASKS_DATA_KEY = "TASKS_DATA",

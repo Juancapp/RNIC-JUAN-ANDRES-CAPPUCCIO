@@ -1,9 +1,14 @@
 import React from "react";
-import { ButtonProps } from "../../types/types";
 import { ButtonText, ButtonStyle } from "./styles";
 import Add from "../../assets/icons/Add.svg";
 
-export const Button = (props: ButtonProps) => {
+export const Button = (props: {
+  onPress?: () => void;
+  text: string | number;
+  toAdd?: boolean;
+  variant?: "primary" | "delete";
+  disabled?: boolean;
+}) => {
   const {
     onPress,
     text,
