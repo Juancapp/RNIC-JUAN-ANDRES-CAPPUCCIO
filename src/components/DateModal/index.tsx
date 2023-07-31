@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import DatePicker from "react-native-date-picker";
 import { Button } from "./styles";
 import { Text } from "react-native";
@@ -9,8 +9,9 @@ export const DateModal = (props: {
   setLimitDate: Dispatch<SetStateAction<Date>>;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  onSubmit: () => void;
 }) => {
-  const { limitDate, setLimitDate, open, setOpen } = props;
+  const { limitDate, setLimitDate, open, setOpen, onSubmit } = props;
 
   return (
     <>
@@ -25,6 +26,7 @@ export const DateModal = (props: {
         onConfirm={(date) => {
           setOpen(false);
           setLimitDate(date);
+          onSubmit();
         }}
         onCancel={() => {
           setOpen(false);

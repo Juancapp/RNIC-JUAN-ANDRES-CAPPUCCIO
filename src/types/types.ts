@@ -40,4 +40,5 @@ export interface ContextValues {
 export enum Keys {
   SELECTED_TASK_DATA_KEY = "SELECTED_TASK_DATA",
   TASKS_DATA_KEY = "TASKS_DATA",
+  NAVIGATION_KEY = "NAVIGATION",
 }

@@ -8,7 +8,7 @@ export const ButtonStyle = styled.TouchableOpacity<{
 }>`
   background-color: ${(props) =>
     props.disabled ? bgColors.disabled : bgColors[props.variant]};
-  border-radius: 20px;
+  border-radius: 5px;
   gap: 3px;
   flex-direction: row;
   align-items: center;

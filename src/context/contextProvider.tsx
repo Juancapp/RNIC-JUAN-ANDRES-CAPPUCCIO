@@ -41,7 +41,7 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
     } catch (e) {
       console.log(e);
     }
-    if (key === Keys.TASKS_DATA_KEY) setIsSetted(true);
+    key === Keys.TASKS_DATA_KEY && setIsSetted(true);
   };
 
   useEffect(() => {

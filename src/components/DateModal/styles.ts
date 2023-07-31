@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { colors } from "../../constants/theme";
 
 export const Button = styled.TouchableOpacity<{ text: string }>`
-  border-radius: 20px;
+  border-radius: 5px;
   padding-left: 10px;
   padding-right: 10px;
   height: 50px;

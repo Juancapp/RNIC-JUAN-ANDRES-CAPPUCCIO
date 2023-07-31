@@ -1,12 +1,11 @@
 import React from "react";
 import Form from "../../components/Form";
-import { RootStackParamList } from "../../types/types";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Container } from "./styles";
 
 export const EditTask = () => {
   return (
-    <>
+    <Container>
       <Form isToEdit={true} />
-    </>
+    </Container>
   );
 };

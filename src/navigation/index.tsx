@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { List } from "../screens/list";
 import { EditTask } from "../screens/editTask";
 
-import { RootStackParamList } from "../types/types";
+import { Keys, RootStackParamList } from "../types/types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AddTask } from "../screens/addTask";
@@ -11,17 +11,6 @@ import ListIcon from "../assets/icons/List.svg";
 import { colors } from "../constants/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
-
-interface TabParamList {
-  [Routes.SCREEN_ONE]: undefined;
-  [Routes.SCREEN_TWO]: undefined;
-  [key: string]: any;
-}
-
-enum Routes {
-  SCREEN_ONE = "SCREEN_ONE",
-  SCREEN_TWO = "SCREEN_TWO",
-}
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -38,7 +27,7 @@ const TabScreenOne = () => {
 export const TotalNavigator = () => {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
-  const NAVIGATION_KEY = "NAVIGATION";
+  const NAVIGATION_KEY = Keys.NAVIGATION_KEY;
 
   useEffect(() => {
     const getStorageNavigationState = async () => {

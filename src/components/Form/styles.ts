@@ -26,7 +26,7 @@ export const Title = styled.Text`
 
 export const Input = styled.TextInput`
   background-color: ${colors.white};
-  border-radius: 20px;
+  border-radius: 5px;
   padding-left: 10px;
   background-color: ${colors.white};
 `;

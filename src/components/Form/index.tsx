@@ -101,7 +101,7 @@ export default function Form(props: { isToEdit: boolean }) {
         ref={descriptionInputRef}
         onSubmitEditing={() => {
           descriptionInputRef.current?.blur();
-          onSubmit();
+          setOpen(true);
         }}
       />
       <DateModal
@@ -109,16 +109,21 @@ export default function Form(props: { isToEdit: boolean }) {
         setLimitDate={setLimitDate}
         open={open}
         setOpen={setOpen}
+        onSubmit={onSubmit}
       />
       <ButtonsContainer>
         {isToEdit && (
-          <Button onPress={() => deleteData()} text="Delete" variant="delete" />
+          <Button
+            onPress={() => deleteData()}
+            text="Eliminar"
+            variant="delete"
+          />
         )}
         <Button
           disabled={!isDirty}
-          toAdd={true}
+          toAdd={false}
           onPress={onSubmit}
-          text="Confirmar"
+          text="Editar"
         />
       </ButtonsContainer>
     </Container>
