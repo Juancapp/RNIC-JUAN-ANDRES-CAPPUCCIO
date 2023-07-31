@@ -10,7 +10,12 @@ import { Keys, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Edit from "../../assets/icons/Edit.svg";
-import { Text, TouchableOpacity } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { ContextProvider } from "../../context/contextProvider";
 import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -51,31 +56,33 @@ export default function Card(props: {
   };
 
   return (
-    <Container activeOpacity={1} onPress={() => switchState?.(id)}>
-      <ButtonsAndTitleContainer>
-        <CustomFont bold={true}>
-          <Title>{title}</Title>
+    <TouchableWithoutFeedback onPress={() => switchState?.(id)}>
+      <Container>
+        <ButtonsAndTitleContainer>
+          <CustomFont bold={true}>
+            <Title>{title}</Title>
+          </CustomFont>
+        </ButtonsAndTitleContainer>
+        {img && <Image alt={title} source={Images[img]} />}
+        <CustomFont>
+          <Description>{description}</Description>
         </CustomFont>
-      </ButtonsAndTitleContainer>
-      {img && <Image alt={title} source={Images[img]} />}
-      <CustomFont>
-        <Description>{description}</Description>
-      </CustomFont>
-      {limitDate && <Text>Limit date: {limitDate}</Text>}
-      <ButtonsAndTitleContainer>
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={(e) => {
-            e.stopPropagation();
-            setSelectedTask(dataWithoutImg);
-            setStorage(dataWithoutImg);
-            onPress();
-          }}
-        >
-          <Edit />
-        </TouchableOpacity>
-        {isDone ? <Checked stroke="green" /> : <NotChecked stroke="red" />}
-      </ButtonsAndTitleContainer>
-    </Container>
+        {limitDate && <Text>Limit date: {limitDate}</Text>}
+        <ButtonsAndTitleContainer>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={(e) => {
+              e.stopPropagation();
+              setSelectedTask(dataWithoutImg);
+              setStorage(dataWithoutImg);
+              onPress();
+            }}
+          >
+            <Edit />
+          </TouchableOpacity>
+          {isDone ? <Checked stroke="green" /> : <NotChecked stroke="red" />}
+        </ButtonsAndTitleContainer>
+      </Container>
+    </TouchableWithoutFeedback>
   );
 }

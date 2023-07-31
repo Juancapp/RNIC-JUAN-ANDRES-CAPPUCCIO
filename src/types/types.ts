@@ -25,10 +25,11 @@ export type RootStackParamList = {
 export interface ContextValues {
   tasksData: Task[];
   setTasksData: Dispatch<SetStateAction<Task[]>>;
-  selectedTask: Omit<Task, "img"> | null;
+  selectedTask: Omit<Task, "img" | "isActive"> | null;
   setSelectedTask: Dispatch<
     SetStateAction<Omit<Task, "img" | "isActive"> | null>
   >;
+  isSetted: boolean;
 }
 
 export enum Keys {

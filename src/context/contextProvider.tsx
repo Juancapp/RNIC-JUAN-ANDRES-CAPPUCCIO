@@ -15,7 +15,10 @@ export const ContextProvider = createContext<ContextValues | null>(null);
 export const AppContext = ({ children }: { children: ReactNode }) => {
   const [tasksData, setTasksData] = useState<Task[]>([]);
   const [isSetted, setIsSetted] = useState<boolean>(false);
-  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [selectedTask, setSelectedTask] = useState<Omit<
+    Task,
+    "img" | "isActive"
+  > | null>(null);
 
   const storageConstants = [
     { key: Keys.TASKS_DATA_KEY, setState: setTasksData, elseData: data },
@@ -55,7 +58,19 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     storageConstants.forEach((element) => {
-      getStorage(element.key, element.setState, element.elseData);
+      if (element.key === Keys.TASKS_DATA_KEY) {
+        getStorage(
+          element.key,
+          element.setState as Dispatch<SetStateAction<Task[]>>,
+          element.elseData
+        );
+      } else {
+        getStorage(
+          element.key,
+          element.setState as Dispatch<SetStateAction<Task | null>>,
+          element.elseData
+        );
+      }
     });
   }, []);
 
@@ -68,6 +83,7 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
     setTasksData,
     selectedTask,
     setSelectedTask,
+    isSetted,
   };
 
   return (

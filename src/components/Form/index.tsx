@@ -7,6 +7,7 @@ import { DateModal } from "../DateModal";
 import { useNavigation } from "@react-navigation/native";
 import { objectsEqual } from "../../helpers";
 import { FormTask } from "../../types/types";
+import { Spinner } from "../Spinner";
 
 export default function Form(props: { isToEdit: boolean }) {
   const { isToEdit } = props;
@@ -96,7 +97,9 @@ export default function Form(props: { isToEdit: boolean }) {
     navigation.goBack();
   };
 
-  return (
+  return isToEdit && !selectedTask ? (
+    <Spinner />
+  ) : (
     <Container>
       <Title>{isToEdit ? "Editar Task" : "Agregar Task"}</Title>
       <Input

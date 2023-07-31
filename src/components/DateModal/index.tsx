@@ -14,7 +14,7 @@ export const DateModal = (props: {
 
   return (
     <>
-      <Button activeOpacity={1} text="Date" onPress={() => setOpen(true)}>
+      <Button text="Date" onPress={() => setOpen(true)}>
         <Text>{limitDate.toDateString()}</Text>
         <Calendar />
       </Button>

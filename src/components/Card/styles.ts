@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { colors } from "../../constants/theme";
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.View`
   background-color: ${colors.white};
   margin-bottom: 12px;
   justify-content: space-around;
