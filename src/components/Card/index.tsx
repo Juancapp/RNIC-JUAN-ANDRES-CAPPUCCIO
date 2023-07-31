@@ -24,7 +24,13 @@ export default function Card(props: {
   const { data, onPress } = props;
   const { setTasksData, setSelectedTask } = useContext(ContextProvider)!;
   const { title, description, isDone, id, img, limitDate } = data;
-  const dataWithoutImg = { title, description, isDone, id, limitDate };
+  const dataWithoutImg: Omit<Task, "img" | "isActive"> | null = {
+    title,
+    description,
+    isDone,
+    id,
+    limitDate,
+  };
 
   const switchState = (id: number) => {
     setTasksData((prevTasksData: Task[]) => {
@@ -39,7 +45,7 @@ export default function Card(props: {
     });
   };
 
-  const setStorage = async (value: Task) => {
+  const setStorage = async (value: Omit<Task, "img" | "isActive">) => {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem(Keys.SELECTED_TASK_DATA_KEY, jsonValue);
   };
@@ -61,8 +67,8 @@ export default function Card(props: {
           activeOpacity={1}
           onPress={(e) => {
             e.stopPropagation();
-            setSelectedTask(dataWithoutImg as Task);
-            setStorage(dataWithoutImg as Task);
+            setSelectedTask(dataWithoutImg);
+            setStorage(dataWithoutImg);
             onPress();
           }}
         >

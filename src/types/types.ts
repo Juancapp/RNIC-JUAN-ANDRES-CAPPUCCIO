@@ -21,11 +21,14 @@ export type RootStackParamList = {
   EditTask: undefined;
   AddTask: undefined;
 };
+
 export interface ContextValues {
   tasksData: Task[];
   setTasksData: Dispatch<SetStateAction<Task[]>>;
-  selectedTask: Task | null;
-  setSelectedTask: Dispatch<SetStateAction<Task | null>>;
+  selectedTask: Omit<Task, "img"> | null;
+  setSelectedTask: Dispatch<
+    SetStateAction<Omit<Task, "img" | "isActive"> | null>
+  >;
 }
 
 export enum Keys {
