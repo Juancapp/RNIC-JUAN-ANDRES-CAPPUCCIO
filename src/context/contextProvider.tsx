@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  ReactNode,
-  createContext,
-  SetStateAction,
-  Dispatch,
-  useEffect,
-} from "react";
+import React, { useState, ReactNode, createContext, useEffect } from "react";
 import { data } from "../constants/data";
 import { ContextValues, Keys, SetStateType, Task } from "../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,6 +10,15 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
   const [isSetted, setIsSetted] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
+  const storageConstants = [
+    { key: Keys.TASKS_DATA_KEY, setState: setTasksData, elseData: data },
+    {
+      key: Keys.SELECTED_TASK_DATA_KEY,
+      setState: setSelectedTask,
+      elseData: null,
+    },
+  ];
+
   const updateStorage = async (value: Task[]) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -26,27 +28,25 @@ export const AppContext = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const getSt = async (
+  const getStorage = async (
     key: Keys,
-    setState: SetStateType<Task[] | Task | null>
+    setState: SetStateType<Task[] | []> | SetStateType<Task | null>,
+    elseData: Task | Task[] | null
   ) => {
     try {
       const jsonValue = await AsyncStorage.getItem(key);
-      const convertedData = jsonValue != null ? JSON.parse(jsonValue) : data;
+      const convertedData =
+        jsonValue != null ? JSON.parse(jsonValue) : elseData;
       setState(convertedData);
     } catch (e) {
       console.log(e);
     }
+    if (key === Keys.TASKS_DATA_KEY) setIsSetted(true);
   };
 
-  const asyncConst = [
-    { key: Keys.TASKS_DATA_KEY, setState: setTasksData },
-    { key: Keys.SELECTED_TASK_DATA_KEY, setState: setSelectedTask },
-  ];
-
   useEffect(() => {
-    asyncConst.forEach((element) => {
-      return getSt(element.key, element.setState);
+    storageConstants.forEach((element) => {
+      getStorage(element.key, element.setState, element.elseData);
     });
   }, []);
 

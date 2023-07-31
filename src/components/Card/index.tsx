@@ -6,7 +6,7 @@ import {
   Image,
   CustomFont,
 } from "./styles";
-import { CardProps, Task } from "../../types/types";
+import { CardProps, Keys, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Delete from "../../assets/icons/Delete.svg";
@@ -39,7 +39,7 @@ export default function Card(props: CardProps) {
 
   const setStorage = async (value: Task) => {
     const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem(SELECTED_TASK_DATA_KEY, jsonValue);
+    await AsyncStorage.setItem(Keys.SELECTED_TASK_DATA_KEY, jsonValue);
   };
 
   return (
@@ -59,8 +59,8 @@ export default function Card(props: CardProps) {
           activeOpacity={1}
           onPress={(e) => {
             e.stopPropagation();
-            setSelectedTask(dataWithoutImg);
-            setStorage(dataWithoutImg);
+            setSelectedTask(dataWithoutImg as Task);
+            setStorage(dataWithoutImg as Task);
             onPress();
           }}
         >
