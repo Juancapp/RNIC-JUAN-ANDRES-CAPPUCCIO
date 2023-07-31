@@ -6,7 +6,7 @@ import {
   Image,
   CustomFont,
 } from "./styles";
-import { CardProps, SELECTED_TASK_DATA_KEY, Task } from "../../types/types";
+import { CardProps, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Delete from "../../assets/icons/Delete.svg";

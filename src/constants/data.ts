@@ -1,3 +1,5 @@
+import { colors } from "./theme";
+
 export const data = [
   {
     id: 0,
@@ -66,3 +68,9 @@ export const data = [
     isActive: true,
   },
 ];
+
+export const bgColors = {
+  disabled: colors.disabled,
+  primary: colors.primaryButton,
+  delete: colors.delete,
+};

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface Task {
   id: number;
   title: string;
@@ -27,4 +29,15 @@ export type RootStackParamList = {
   AddTask: undefined;
 };
 
-export const SELECTED_TASK_DATA_KEY = "SELECTED_TASK_DATA";
+export type SetStateType<T> = Dispatch<SetStateAction<T>>;
+
+export interface ContextValues {
+  tasksData: Task[] | [];
+  setTasksData: SetStateType<Task[] | []>;
+  selectedTask: Task | null;
+  setSelectedTask: SetStateType<Task | null>;
+}
+export enum Keys {
+  SELECTED_TASK_DATA_KEY = "SELECTED_TASK_DATA",
+  TASKS_DATA_KEY = "TASKS_DATA",
+}

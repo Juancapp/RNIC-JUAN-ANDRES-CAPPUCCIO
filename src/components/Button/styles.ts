@@ -1,11 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "../../constants/theme";
-
-const bgColors = {
-  disabled: colors.disabled,
-  primary: colors.primaryButton,
-  delete: colors.delete,
-};
+import { bgColors } from "../../constants/data";
 
 export const ButtonStyle = styled.TouchableOpacity<{
   disabled: boolean;
