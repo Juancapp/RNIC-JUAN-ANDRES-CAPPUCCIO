@@ -10,12 +10,7 @@ import { Keys, Task } from "../../types/types";
 import NotChecked from "../../assets/icons/NotChecked.svg";
 import Checked from "../../assets/icons/Checked.svg";
 import Edit from "../../assets/icons/Edit.svg";
-import {
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Text, TouchableWithoutFeedback } from "react-native";
 import { ContextProvider } from "../../context/contextProvider";
 import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -69,8 +64,7 @@ export default function Card(props: {
         </CustomFont>
         {limitDate && <Text>Limit date: {limitDate}</Text>}
         <ButtonsAndTitleContainer>
-          <TouchableOpacity
-            activeOpacity={1}
+          <TouchableWithoutFeedback
             onPress={(e) => {
               e.stopPropagation();
               setSelectedTask(dataWithoutImg);
@@ -79,7 +73,7 @@ export default function Card(props: {
             }}
           >
             <Edit />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
           {isDone ? <Checked stroke="green" /> : <NotChecked stroke="red" />}
         </ButtonsAndTitleContainer>
       </Container>
