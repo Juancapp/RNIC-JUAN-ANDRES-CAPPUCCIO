@@ -1,6 +1,9 @@
 export const colors = {
-  background: "#DBDFEA",
   transparent: "transparent",
-  primaryButton: "#7a7fd3",
+  backgroundColor: "#e3e1e1",
+  primaryButton: "#22457d",
+  disabled: "grey",
+  black: "black",
   white: "white",
+  delete: "#a83232",
 };
